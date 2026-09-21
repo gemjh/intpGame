@@ -1,0 +1,233 @@
+{
+  "events": [
+    {
+      "id": "evt_fish_rock",
+      "title": "갯바위 관찰",
+      "description": "창밖을 볼 때마다 갯바위 근처에서 뭔가 움직인다. 물고기 같기도 하고, 아닌 것 같기도 하다. 궁금증이 참을 수 없는 수준이 되었다.",
+      "once": false,
+      "cooldown_days": 1,
+      "trigger_conditions": {
+        "last_action": "window_look",
+        "action_counts_gte": {"window_look": 3},
+        "interests_gte": {"fish": 2},
+        "info_absent": ["갯바위 위치 파악"]
+      },
+      "choices": [
+        {
+          "text": "직접 가서 관찰해 본다",
+          "result": "슬리퍼를 신고 나가 갯바위까지 걸어갔다. 생각보다 가까웠다. 물웅덩이 속에는 정말 작은 물고기들이 살고 있었다.",
+          "effects": {
+            "stats": {"curiosity": 3, "execution": 1},
+            "status": {"energy": -10},
+            "interests": {"fish": 2},
+            "unlock_locations": ["seaside_rock"],
+            "discover": ["갯바위 위치 파악"]
+          }
+        },
+        {
+          "text": "먼저 지도와 자료부터 찾아본다",
+          "result": "지도 앱을 켜고 조석표까지 확인했다. 썰물 때 웅덩이가 생긴다는 걸 알아냈다. 이제 가기만 하면 된다.",
+          "effects": {
+            "stats": {"thinking": 2, "curiosity": 1},
+            "status": {"hyperfocus": 10},
+            "interests": {"knowledge": 1},
+            "unlock_locations": ["seaside_rock"],
+            "discover": ["갯바위 위치 파악"]
+          }
+        },
+        {
+          "text": "일단 계속 멀리서 지켜본다",
+          "result": "창가에 앉아 계속 지켜봤다. 아직은 정체를 알 수 없다. 다음에 또 궁금해질 것 같다.",
+          "effects": {
+            "stats": {"thinking": 1, "creativity": 1},
+            "status": {"hyperfocus": 5}
+          }
+        }
+      ]
+    },
+    {
+      "id": "evt_rabbit_hole",
+      "title": "잡생각 과몰입",
+      "description": "누워서 천장을 보는데 갑자기 '내가 왜 이 생각을 하고 있지?' 하는 생각이 들었다. 그리고 그 생각의 출처를 따라가다 보니 끝이 없다.",
+      "once": false,
+      "cooldown_days": 1,
+      "trigger_conditions": {
+        "last_action": "lie_down",
+        "chance": 0.5
+      },
+      "choices": [
+        {
+          "text": "끝까지 파고든다",
+          "result": "정신을 차려 보니 창밖이 어두워져 있었다. 머리는 맑은데 몸은 무겁다. 꽤 쓸 만한 통찰을 얻은 것 같다.",
+          "effects": {
+            "stats": {"thinking": 3, "creativity": 2},
+            "status": {"hyperfocus": 25, "energy": -15},
+            "discover": ["잡생각의 끝"],
+            "advance_time": 1
+          }
+        },
+        {
+          "text": "메모장에 적어두고 다시 눕는다",
+          "result": "핵심만 한 줄로 적어 두었다. 이제 머릿속이 좀 가벼워졌다.",
+          "effects": {
+            "stats": {"creativity": 1, "execution": 1},
+            "status": {"hyperfocus": 5}
+          }
+        },
+        {
+          "text": "무시하고 잔다",
+          "result": "생각은 다음에 다시 찾아올 것이다. 지금은 눈부터 감았다.",
+          "effects": {
+            "stats": {"reality": 1},
+            "status": {"energy": 10, "hyperfocus": -10}
+          }
+        }
+      ]
+    },
+    {
+      "id": "evt_boxes_secret",
+      "title": "이삿짐 속 물건",
+      "description": "박스 바닥에서 낡은 노트와 봉투 하나가 나왔다. 노트에는 어릴 적 내가 쓴 이상한 아이디어들이, 봉투에는 잊고 있던 현금이 들어 있다.",
+      "once": true,
+      "trigger_conditions": {
+        "last_action": "unpack_boxes",
+        "action_counts_gte": {"unpack_boxes": 2}
+      },
+      "choices": [
+        {
+          "text": "낡은 노트를 펼쳐본다",
+          "result": "유치하지만 지금 봐도 흥미로운 발상이 몇 개 있었다. 그때의 나는 꽤 진지했다.",
+          "effects": {
+            "stats": {"creativity": 2, "curiosity": 2},
+            "status": {"hyperfocus": 8},
+            "interests": {"imagination": 2},
+            "discover": ["옛 노트"]
+          }
+        },
+        {
+          "text": "봉투 속 현금부터 센다",
+          "result": "이만 원이었다. 이런 현실적인 발견도 나쁘지 않다.",
+          "effects": {
+            "stats": {"reality": 2},
+            "status": {"money": 20000}
+          }
+        }
+      ]
+    },
+    {
+      "id": "evt_hunger",
+      "title": "텅 빈 냉장고",
+      "description": "배에서 소리가 난다. 냉장고를 열어 보니 먹을 게 거의 없다. 이대로는 내일 컨디션이 걱정된다.",
+      "once": false,
+      "cooldown_days": 2,
+      "trigger_conditions": {
+        "day_gte": 2,
+        "status_lte": {"food": 1},
+        "info_absent": ["편의점 위치 파악"]
+      },
+      "choices": [
+        {
+          "text": "편의점에 다녀온다",
+          "result": "마음의 준비를 하고 문을 열었다. 걸어서 5분 거리에 편의점이 있었다. 다음부턴 언제든 올 수 있겠다.",
+          "effects": {
+            "stats": {"social": 1, "reality": 1},
+            "status": {"energy": -5, "money": -10000, "food": 3},
+            "unlock_locations": ["convenience_store"],
+            "discover": ["편의점 위치 파악"],
+            "advance_time": 1
+          }
+        },
+        {
+          "text": "남은 라면 하나로 버틴다",
+          "result": "라면 한 봉지를 끓였다. 오늘은 넘기겠지만 내일은 또 모른다.",
+          "effects": {
+            "stats": {"reality": 1},
+            "status": {"energy": 5, "food": 1}
+          }
+        },
+        {
+          "text": "배고픔을 무시하고 하던 걸 한다",
+          "result": "배고픔은 잠시 잊었다. 대신 손이 조금 떨린다.",
+          "effects": {
+            "stats": {"thinking": 1},
+            "status": {"hyperfocus": 10, "energy": -10}
+          }
+        }
+      ]
+    },
+    {
+      "id": "evt_code_flow",
+      "title": "코딩 몰입",
+      "description": "키보드 소리가 리듬을 탄다. 머릿속의 구조가 손끝으로 술술 나온다. 지금 이 흐름을 어떻게 쓸까?",
+      "once": true,
+      "trigger_conditions": {
+        "last_action": "computer_code",
+        "action_counts_gte": {"computer_code": 3}
+      },
+      "choices": [
+        {
+          "text": "작은 프로젝트를 시작한다",
+          "result": "폴더를 하나 만들고 이름을 붙였다. 첫 커밋 메시지는 'init'. 뭔가 시작됐다.",
+          "effects": {
+            "stats": {"execution": 3, "thinking": 2},
+            "status": {"hyperfocus": 20, "energy": -10},
+            "interests": {"tech": 2},
+            "discover": ["첫 미니 프로젝트"]
+          }
+        },
+        {
+          "text": "설계만 끝없이 다듬는다",
+          "result": "다이어그램이 예뻐졌다. 코드는 한 줄도 안 늘었지만 구조는 완벽하다.",
+          "effects": {
+            "stats": {"thinking": 3, "creativity": 1},
+            "status": {"hyperfocus": 15}
+          }
+        },
+        {
+          "text": "여기까지만 하고 정리한다",
+          "result": "저장하고 창을 닫았다. 아쉽지만 오늘은 이 정도가 적당하다.",
+          "effects": {
+            "stats": {"reality": 1},
+            "status": {"energy": 5, "hyperfocus": -10}
+          }
+        }
+      ]
+    },
+    {
+      "id": "evt_hyperfocus_crash",
+      "title": "정신 차려 보니",
+      "description": "시계를 봤는데 생각했던 것보다 훨씬 시간이 지나 있다. 어깨는 굳었고 눈은 뻑뻑하다. 그런데 손은 아직 멈추지 않으려 한다.",
+      "once": false,
+      "cooldown_days": 2,
+      "trigger_conditions": {
+        "status_gte": {"hyperfocus": 80}
+      },
+      "choices": [
+        {
+          "text": "그대로 계속한다",
+          "result": "한계를 넘기자 오히려 머리가 맑아진다. 하지만 몸은 분명 대가를 치르고 있다.",
+          "effects": {
+            "stats": {"thinking": 2},
+            "status": {"hyperfocus": 10, "energy": -30},
+            "advance_time": 1
+          }
+        },
+        {
+          "text": "억지로 손을 뗀다",
+          "result": "의자에서 일어나 스트레칭을 했다. 현실로 돌아오는 데 시간이 조금 걸렸다.",
+          "effects": {
+            "stats": {"reality": 2},
+            "status": {"hyperfocus": -40, "energy": -5}
+          }
+        },
+        {
+          "text": "물 한 잔 마시고 숨을 돌린다",
+          "result": "찬물이 목을 타고 내려가자 생각의 속도가 한 단계 내려왔다.",
+          "effects": {
+            "status": {"hyperfocus": -20, "energy": 5}
+          }
+        }
+      ]
+    }
+  ]
+}

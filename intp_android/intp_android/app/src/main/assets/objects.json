@@ -1,0 +1,113 @@
+{
+  "labels": {
+    "stats": {
+      "thinking": "사고력",
+      "execution": "실행력",
+      "curiosity": "호기심",
+      "creativity": "창의력",
+      "social": "사회성",
+      "reality": "현실감각"
+    },
+    "status": {
+      "energy": "기력",
+      "hyperfocus": "과몰입",
+      "money": "돈",
+      "food": "식량"
+    },
+    "interests": {
+      "fish": "물고기",
+      "tech": "기술",
+      "knowledge": "지식",
+      "imagination": "상상"
+    },
+    "periods": {
+      "morning": "아침",
+      "afternoon": "낮",
+      "evening": "저녁",
+      "night": "밤"
+    }
+  },
+  "locations": {
+    "room": {
+      "name": "내 방",
+      "description": "새 동네로 이사 온 지 얼마 안 된 원룸. 창밖으로는 바다가 보이고, 한쪽엔 아직 못 푼 이삿짐이 쌓여 있다.",
+      "objects": [
+        {
+          "id": "computer",
+          "name": "컴퓨터",
+          "icon": "PC",
+          "description": "유일하게 이사 첫날부터 세팅해 둔 물건.",
+          "actions": ["computer_browse", "computer_code"]
+        },
+        {
+          "id": "bookshelf",
+          "name": "책장",
+          "icon": "BK",
+          "description": "읽은 책과 읽을 책이 뒤섞여 있다.",
+          "actions": ["read_book"]
+        },
+        {
+          "id": "window",
+          "name": "창문",
+          "icon": "WN",
+          "description": "바다 쪽으로 난 작은 창.",
+          "actions": ["window_look"]
+        },
+        {
+          "id": "boxes",
+          "name": "이삿짐",
+          "icon": "BX",
+          "description": "테이프도 안 뜯은 박스들.",
+          "actions": ["unpack_boxes"]
+        },
+        {
+          "id": "bed",
+          "name": "침대",
+          "icon": "BD",
+          "description": "누우면 생각이 많아지는 곳.",
+          "actions": ["lie_down", "sleep"]
+        },
+        {
+          "id": "desk",
+          "name": "책상",
+          "icon": "DK",
+          "description": "메모지와 식은 밥그릇이 공존한다.",
+          "actions": ["write_notes", "eat_meal", "plan_day"]
+        }
+      ]
+    },
+    "seaside_rock": {
+      "name": "갯바위",
+      "description": "창밖으로만 보던 갯바위. 밀물 썰물 사이로 작은 물웅덩이들이 남아 있다.",
+      "objects": [
+        {
+          "id": "tidepool",
+          "name": "물웅덩이",
+          "icon": "TP",
+          "description": "작은 물고기들이 갇혀 있다.",
+          "actions": ["observe_tide"]
+        }
+      ]
+    },
+    "convenience_store": {
+      "name": "편의점",
+      "description": "밤에도 불이 켜져 있는 동네 편의점. 사람과 마주치는 건 어쩔 수 없다.",
+      "objects": [
+        {
+          "id": "shelf",
+          "name": "진열대",
+          "icon": "SH",
+          "description": "라면, 삼각김밥, 통조림.",
+          "actions": ["buy_food"]
+        },
+        {
+          "id": "counter",
+          "name": "계산대",
+          "icon": "CT",
+          "description": "점원이 이쪽을 보고 있다.",
+          "actions": ["chat_clerk"]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "actions": {
+    "computer_browse": {
+      "label": "인터넷 서핑",
+      "hint": "이 링크 저 링크 타고 다닌다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"curiosity": 1},
+        "status": {"energy": -10, "hyperfocus": 8},
+        "interests": {"tech": 1}
+      },
+      "logs": [
+        "위키 문서 하나만 보려던 게 탭이 열두 개가 됐다.",
+        "커뮤니티 눈팅하다가 새로운 기술 스택 이야기를 발견했다.",
+        "관련 없는 영상 추천이 의외로 흥미로웠다."
+      ]
+    },
+    "computer_code": {
+      "label": "코딩 끄적이기",
+      "hint": "쓸데없지만 재밌는 걸 만든다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"thinking": 1, "execution": 1, "creativity": 1},
+        "status": {"energy": -15, "hyperfocus": 12},
+        "interests": {"tech": 1}
+      },
+      "logs": [
+        "함수 하나를 세 번 갈아엎었다. 처음보다 나아졌다... 아마도.",
+        "버그의 원인을 찾았다. 오타였다.",
+        "돌아가긴 하는데 왜 돌아가는지는 나중에 생각하기로 했다."
+      ]
+    },
+    "read_book": {
+      "label": "책 읽기",
+      "hint": "지식이 쌓이고 생각이 깊어진다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"thinking": 2, "curiosity": 1},
+        "status": {"energy": -10, "hyperfocus": 5},
+        "interests": {"knowledge": 1}
+      },
+      "logs": [
+        "몇 페이지만 읽으려던 게 한 챕터가 끝나 있었다.",
+        "각주가 본문보다 재밌다.",
+        "읽다 보니 이전에 읽은 책과 연결되는 지점이 보였다."
+      ]
+    },
+    "window_look": {
+      "label": "창밖 보기",
+      "hint": "멍하니 바다를 본다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"creativity": 1, "curiosity": 1},
+        "status": {"energy": -5, "hyperfocus": -3},
+        "interests": {"fish": 1}
+      },
+      "logs": [
+        "갯바위 근처에서 물고기가 튀어 오르는 게 보인다.",
+        "파도가 밀려왔다 빠지는 리듬을 한참 세어 봤다.",
+        "저 바위 밑에는 뭐가 살까? 궁금해졌다."
+      ]
+    },
+    "unpack_boxes": {
+      "label": "이삿짐 정리",
+      "hint": "귀찮지만 해야 하는 일",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"execution": 2, "reality": 1},
+        "status": {"energy": -15, "hyperfocus": -5}
+      },
+      "logs": [
+        "박스 하나를 겨우 뜯었다. 내용물이 예상과 다르다.",
+        "정리보다 분류 체계를 고민하는 시간이 더 길었다.",
+        "이걸 왜 챙겼는지 기억나지 않는 물건들이 나온다."
+      ]
+    },
+    "lie_down": {
+      "label": "누워서 멍때리기",
+      "hint": "쉬지만 잡생각이 끼어들 수 있다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"creativity": 1},
+        "status": {"energy": 10, "hyperfocus": 5}
+      },
+      "logs": [
+        "천장 무늬를 보다가 갑자기 어떤 생각이 떠올랐다.",
+        "눈을 감았는데 머릿속은 오히려 바빠졌다.",
+        "쉬는 중이다. 겉보기엔."
+      ]
+    },
+    "sleep": {
+      "label": "잠자기 (다음 날로)",
+      "hint": "하루를 마무리하고 푹 잔다",
+      "skip_to_next_day": true,
+      "effects": {
+        "status": {"energy": 40, "hyperfocus": -20}
+      },
+      "logs": [
+        "이불을 덮자마자 생각이 멈췄다.",
+        "오늘 할 일은 내일의 나에게 맡기고 눈을 감았다."
+      ]
+    },
+    "write_notes": {
+      "label": "메모 쓰기",
+      "hint": "머릿속 아이디어를 종이에 옮긴다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"creativity": 2, "thinking": 1},
+        "status": {"energy": -10, "hyperfocus": 6}
+      },
+      "logs": [
+        "메모지 세 장이 화살표와 물음표로 가득 찼다.",
+        "쓰고 나니 내가 뭘 생각하고 있었는지 조금 정리됐다.",
+        "나중에 볼 수 있을지는 모르겠지만 일단 적어 뒀다."
+      ]
+    },
+    "eat_meal": {
+      "label": "밥 먹기",
+      "hint": "식량 -1, 기력 회복",
+      "time_cost": 1,
+      "effects": {
+        "status": {"food": -1, "energy": 15, "hyperfocus": -5}
+      },
+      "logs": [
+        "밥 먹는 것도 일이다. 그래도 먹으니 정신이 든다.",
+        "먹으면서 유튜브를 틀었다. 오늘도 멀티태스킹이다."
+      ]
+    },
+    "plan_day": {
+      "label": "계획 세우기",
+      "hint": "할 일 목록을 만든다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"execution": 1, "reality": 1, "thinking": 1},
+        "status": {"energy": -8}
+      },
+      "logs": [
+        "계획 세우기에 성공했다. 실행은 다른 문제다.",
+        "우선순위를 정하는 데만 20분을 썼다."
+      ]
+    },
+    "observe_tide": {
+      "label": "물웅덩이 관찰",
+      "hint": "작은 생태계를 들여다본다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"curiosity": 2, "creativity": 1},
+        "status": {"energy": -10, "hyperfocus": 6},
+        "interests": {"fish": 2}
+      },
+      "logs": [
+        "웅덩이 속 작은 물고기가 바위틈으로 숨는 패턴을 발견했다.",
+        "쭈그리고 앉아 한 시간을 봤다. 다리가 저리다.",
+        "이름 모를 생물을 찾았다. 사진부터 찍었다."
+      ]
+    },
+    "buy_food": {
+      "label": "장 보기",
+      "hint": "돈 -10,000, 식량 +3",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"reality": 1},
+        "status": {"money": -10000, "food": 3, "energy": -5}
+      },
+      "logs": [
+        "라면과 삼각김밥을 바구니에 담았다. 최소한의 사회 활동 완료.",
+        "가장 효율적인 조합을 계산해서 장을 봤다."
+      ]
+    },
+    "chat_clerk": {
+      "label": "점원과 인사하기",
+      "hint": "어색하지만 사회성이 오른다",
+      "time_cost": 1,
+      "effects": {
+        "stats": {"social": 2},
+        "status": {"energy": -8}
+      },
+      "logs": [
+        "\"안녕하세요\"까지는 성공했다. 그 뒤는 침묵이었다.",
+        "점원이 먼저 말을 걸었다. 대답이 조금 늦었지만 나쁘지 않았다."
+      ]
+    }
+  }
+}
