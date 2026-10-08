@@ -1,0 +1,26 @@
+/* ===== 가구 접근/상호작용 + 엔진 연동 UI ===== */
+/* 서랍장(drawer) 가구 바로 옆이라, 겹쳐서 서랍장 클릭을 가로채지 않게 폭을 좁히고
+   z-index를 가구(최대 9)보다 높여 항상 우선 클릭되게 한다. */
+.ix-door{position:absolute;width:8%;height:28%;transform:translate(-50%,-50%);cursor:pointer;z-index:15}
+
+/* 모달 패널이 책상 상세 내용 등으로 길어질 수 있어 스크롤 가능하게 */
+.panel{max-height:82vh;overflow-y:auto}
+
+.ix-extra{margin:4px 0 10px;font-size:13px;line-height:1.55;white-space:pre-line}
+.ix-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+.ix-actions button{background:#293852;border:1px solid #7786a1;border-radius:10px;padding:9px 12px;font-size:13px}
+.ix-actions button:active{background:#3a4d70}
+
+.ix-thread{background:#1a2438;border:1px solid #3b4a66;border-radius:12px;padding:10px 12px;margin:8px 0}
+.ix-thread h5{margin:8px 0 4px;font-size:11px;color:#9fb0cc;text-transform:uppercase;letter-spacing:.04em}
+.ix-thread h5:first-child{margin-top:0}
+.ix-entry{font-size:13px;margin:3px 0;color:#dfe6f3}
+.ix-hyp{font-size:13px;font-weight:700;color:#ffd28a;margin-top:4px}
+.ix-hyp-status{font-weight:400;font-size:11px;color:#c9a46a}
+
+.ix-end{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#080d19cc;z-index:20;padding:24px;backdrop-filter:blur(3px)}
+.ix-end.show{display:flex}
+.ix-end-panel{width:min(100%,380px);background:#202e45e8;border:1px solid #aab9cf77;border-radius:18px;padding:26px;box-shadow:0 12px 35px #0008;text-align:center}
+.ix-end-panel h2{margin:0 0 10px;font-size:20px}
+.ix-end-panel p{line-height:1.6;color:#dfe6f3}
+.ix-end-panel button{margin-top:14px;background:#4b6fb0;border:1px solid #9fb8e6;border-radius:12px;padding:11px 18px;font-weight:700}

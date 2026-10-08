@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>INTP 키우기 — 방 (Vertical Slice)</title>
+<link rel="stylesheet" href="/static/room.css" />
+</head>
+<body>
+  <div id="app">
+    <header id="topbar">
+      <div id="daytime">Day <span id="day">1</span> · <span id="period">아침</span></div>
+      <div id="items"></div>
+      <div id="topbar-buttons">
+        <button id="btn-memowall">메모벽</button>
+        <button id="btn-save">저장</button>
+        <button id="btn-new">새로 시작</button>
+      </div>
+    </header>
+
+    <main id="stage">
+      <canvas id="room" width="700" height="500"></canvas>
+      <div id="interact-panel" class="panel hidden"></div>
+      <div id="hint">방향키 / WASD 로 이동. 오브젝트 근처로 가면 할 수 있는 행동이 떠요.</div>
+    </main>
+
+    <aside id="log-panel">
+      <h3>기록</h3>
+      <div id="log"></div>
+    </aside>
+  </div>
+
+  <div id="desk-modal" class="modal hidden">
+    <div class="modal-box">
+      <h2>책상</h2>
+      <div id="desk-content"></div>
+      <button class="modal-close" data-close="desk-modal">닫기</button>
+    </div>
+  </div>
+
+  <div id="memowall-modal" class="modal hidden">
+    <div class="modal-box">
+      <h2>메모벽</h2>
+      <div id="memowall-content"></div>
+      <button class="modal-close" data-close="memowall-modal">닫기</button>
+    </div>
+  </div>
+
+  <div id="end-screen" class="hidden">
+    <div id="end-label">Vertical Slice End</div>
+  </div>
+
+  <script>
+    window.__SNAPSHOT__ = {{ snapshot | tojson }};
+  </script>
+  <script src="/static/room.js"></script>
+</body>
+</html>

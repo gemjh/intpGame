@@ -1,0 +1,9 @@
+/* ===== 캐릭터 이동 (1차 테스트: 이동 + 가구 충돌) =====
+ * .player의 left/top(%)은 캐릭터가 서 있는 바닥 지점(발 위치) 기준.
+ * transform으로 스프라이트 박스를 그 지점 위로 올려 붙인다 (가구의 중심 anchor와 다름).
+ */
+body:not(.editing) .stage{touch-action:manipulation}
+.player{position:absolute;left:50%;top:50%;width:56px;height:92px;transform:translate(-50%,-90%);pointer-events:none}
+.player.player-hidden{display:none}
+.player-shadow{position:absolute;left:50%;bottom:2px;width:34px;height:11px;margin-left:-17px;background:#000;opacity:.32;border-radius:50%;filter:blur(1px)}
+.player-sprite{position:absolute;left:0;top:0;width:100%;height:calc(100% - 6px);object-fit:contain;object-position:bottom center;image-rendering:-webkit-optimize-contrast}

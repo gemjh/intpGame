@@ -1,0 +1,29 @@
+/* ===== 확정된 가구 배치 (my-layout-261008.json) =====
+ * 사용자가 배치 편집기로 직접 맞춘 최종 배치. 이후 작업에서 가구 위치/크기/회전을
+ * 임의로 바꾸지 않고, 이 값을 항상 기준(초기값)으로 사용한다.
+ * editor.js보다 먼저 로드되어야 한다 (editor.js가 초기화 시 이 값을 읽는다).
+ */
+window.INTP_FIXED_LAYOUT = {
+  "format": "intp-room-layout",
+  "version": 1,
+  "savedAt": "2026-10-08T05:24:42.877Z",
+  "coordinateSystem": {
+    "width": 1200,
+    "height": 800,
+    "unit": "room-px",
+    "origin": "top-left",
+    "anchor": "center",
+    "note": "방 배경 원본 이미지(1200x800) 픽셀 좌표. x,y는 가구 이미지 중심점. z가 클수록 앞."
+  },
+  "furniture": [
+    {"id":"bed","name":"침대","x":803,"y":407,"width":243,"height":189.5,"scale":0.81,"rotation":0,"aspectLocked":true,"z":5,"visible":true,"bounds":{"left":681.5,"top":312.3,"right":924.5,"bottom":501.8}},
+    {"id":"desk","name":"책상","x":384,"y":397,"width":210.6,"height":212.4,"scale":0.78,"rotation":3,"aspectLocked":true,"z":6,"visible":true,"bounds":{"left":273.3,"top":285.4,"right":494.7,"bottom":508.6}},
+    {"id":"board","name":"칠판","x":305,"y":260,"width":149.8,"height":175.4,"scale":0.8,"rotation":4.5,"aspectLocked":true,"z":3,"visible":true,"bounds":{"left":223.5,"top":166.7,"right":386.5,"bottom":353.3}},
+    {"id":"window","name":"창문","x":509,"y":167,"width":149.1,"height":192.9,"scale":0.681,"rotation":1,"aspectLocked":true,"z":1,"visible":true,"bounds":{"left":432.8,"top":69.3,"right":585.2,"bottom":264.7}},
+    {"id":"boxes","name":"이삿짐","x":586,"y":532,"width":180,"height":103.6,"scale":1.25,"rotation":0,"aspectLocked":true,"z":8,"visible":true,"bounds":{"left":496,"top":480.2,"right":676,"bottom":583.8}},
+    {"id":"radio","name":"라디오","x":615,"y":326,"width":82.1,"height":69.4,"scale":0.57,"rotation":0,"aspectLocked":true,"z":9,"visible":true,"bounds":{"left":574,"top":291.3,"right":656.1,"bottom":360.7}},
+    {"id":"drawer","name":"편지 서랍장","x":936,"y":528,"width":132,"height":129.8,"scale":1,"rotation":0,"aspectLocked":true,"z":7,"visible":true,"bounds":{"left":870,"top":463.1,"right":1002,"bottom":592.9}},
+    {"id":"mirror","name":"거울","x":399,"y":591,"width":76.1,"height":150.8,"scale":0.563,"rotation":0,"aspectLocked":true,"z":2,"visible":true,"bounds":{"left":361,"top":515.6,"right":437.1,"bottom":666.4}},
+    {"id":"shelf","name":"책장","x":757,"y":256,"width":112.3,"height":231.7,"scale":0.78,"rotation":3,"aspectLocked":true,"z":4,"visible":true,"bounds":{"left":694.9,"top":137.4,"right":819.1,"bottom":374.6}}
+  ]
+};

@@ -1,0 +1,62 @@
+/* ===== 가구 배치 편집기 (원본 스타일 위에 덧붙임) ===== */
+.world{position:absolute;inset:0;transform-origin:0 0;--inv:1}
+.furniture img{height:100%;object-fit:fill}
+.furniture.is-hidden{display:none}
+
+/* 편집 버튼 (게임 모드) */
+#editBtn{background:#3a2f52;border:1px solid #9b86c4;border-radius:12px;padding:11px 14px}
+
+/* 편집 모드 레이아웃: 방은 위, 패널은 아래 → 패널이 가구를 가리지 않음 */
+body.editing{overflow:hidden;overscroll-behavior:none}
+.editing .app{height:100dvh;min-height:0;padding-bottom:0}
+.editing header{padding:10px 12px}
+.editing .notice,.editing footer{display:none}
+.editing .stage{margin:0;flex:none;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;outline:1px solid #ffffff22;background:#000}
+.editing .furniture{pointer-events:none}
+.editing .furniture.is-hidden{display:block;opacity:.28}
+.editing .furniture.is-selected{outline:calc(2px * var(--inv)) dashed #ffe19b;outline-offset:calc(2px * var(--inv))}
+.sel-label{position:absolute;z-index:1000;transform-origin:0 0;transform:scale(var(--inv)) translate(-50%,calc(-100% - 6px));background:#ffe19b;color:#1b1f2c;font-size:12px;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap;pointer-events:none}
+.sel-label.below{transform:scale(var(--inv)) translate(-50%,6px)}
+
+/* 편집 패널 */
+.ed{width:100%;max-width:680px;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:8px 2px calc(12px + env(safe-area-inset-bottom));font-size:14px}
+.ed[hidden]{display:none}
+.ed button{background:#293852;border:1px solid #7786a1;border-radius:10px;padding:8px 10px;min-height:38px;touch-action:manipulation}
+.ed button:active{background:#3a4d70}
+.ed button.pri{background:#4b6fb0;border-color:#9fb8e6;font-weight:700}
+.ed button.warn{border-color:#c98a8a}
+.ed button:disabled{opacity:.4}
+.ed-bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ed-bar .sp{flex:1}
+.ed-zoom{display:flex;gap:4px;align-items:center}
+.ed-zoom span{min-width:46px;text-align:center;font-variant-numeric:tabular-nums;color:#c9d3e6}
+.ed-zoom button{min-width:38px}
+.ed-menu{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;padding:8px;background:#1a2438;border:1px solid #3b4a66;border-radius:12px}
+.ed-menu[hidden]{display:none}
+.ed-status{margin:8px 2px;font-size:12px;color:#aab4c6}
+.ed-status.dirty{color:#ffd28a}
+.ed-card{background:#1a2438;border:1px solid #3b4a66;border-radius:14px;padding:10px;margin-top:8px}
+.ed-card h4{margin:0 0 8px;font-size:12px;font-weight:600;color:#aab4c6;letter-spacing:.02em}
+.ed-head{display:flex;align-items:center;gap:8px}
+.ed-head strong{font-size:17px}
+.ed-head .sp{flex:1}
+.ed-head small{color:#aab4c6}
+.ed-row{display:flex;gap:4px;align-items:center;margin-top:6px}
+.ed-row>label.k{width:20px;color:#aab4c6;font-weight:700}
+.ed-row button{flex:none;min-width:44px;padding:8px 6px}
+.ed input[type=number]{width:100%;min-width:0;flex:1;background:#0f1626;color:#fff;border:1px solid #5a6884;border-radius:8px;padding:8px;font:inherit;font-variant-numeric:tabular-nums;text-align:center}
+.ed input[type=range]{flex:1;min-width:0;accent-color:#ffe19b;height:32px}
+.ed .pct{width:76px;flex:none}
+.ed .chk{display:flex;align-items:center;gap:6px;white-space:nowrap;color:#dfe6f3}
+.ed .chk input{width:18px;height:18px;accent-color:#ffe19b}
+.ed-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.ed-layers{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:3px}
+.ed-layers button{width:100%;text-align:left;min-height:32px;padding:5px 10px;background:#0f1626;border-color:#2e3a52;font-size:13px}
+.ed-layers button.on{background:#4a4224;border-color:#ffe19b;color:#ffe19b}
+.ed-layers button.off{color:#7b869b}
+.ed-hint{color:#aab4c6;margin:4px 2px 8px;line-height:1.5}
+.ed-chips{display:flex;flex-wrap:wrap;gap:6px}
+.ed-chips button{min-height:36px}
+.ed-chips button.off{color:#7b869b;border-style:dashed}
+.ed-toast{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translateX(-50%);background:#ffe19b;color:#1b1f2c;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:600;z-index:60;box-shadow:0 6px 18px #0008;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
+.ed-toast.show{opacity:1}

@@ -1,0 +1,1634 @@
+{
+  "version": 1,
+  "day": 21,
+  "period": "day1",
+  "seed": 730042,
+  "world_log": [],
+  "observations": [
+    {
+      "id": "a367364a42",
+      "thread": "night_light",
+      "day": 9,
+      "period": "night",
+      "text": "밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+      "tags": {
+        "color": "white",
+        "side": "오른쪽",
+        "blinking": false
+      }
+    },
+    {
+      "id": "d513a6e1c8",
+      "thread": "moon",
+      "day": 10,
+      "period": "day1",
+      "text": "낮 하늘에 달이 떠 있다. '달? 낮인데.' 하는 생각이 스쳤다.",
+      "tags": {}
+    },
+    {
+      "id": "41c68e165f",
+      "thread": "moon",
+      "day": 10,
+      "period": "day2",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "8ccf1537f1",
+      "thread": "night_light",
+      "day": 10,
+      "period": "night",
+      "text": "어제와 비슷하다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": true
+      }
+    },
+    {
+      "id": "54f4a8859c",
+      "thread": "night_light",
+      "day": 11,
+      "period": "night",
+      "text": "위치도 비슷한 것 같다.",
+      "tags": {
+        "blinking": true,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "be71fcd119",
+      "thread": "restaurant",
+      "day": 12,
+      "period": "day1",
+      "text": "아저씨가 상자를 들고 돌아왔다.",
+      "tags": {
+        "status": "closed"
+      }
+    },
+    {
+      "id": "f974bfd86b",
+      "thread": "night_light",
+      "day": 12,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": true,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "c0ab3b5c62",
+      "thread": "restaurant",
+      "day": 13,
+      "period": "day1",
+      "text": "아저씨가 상자를 들고 돌아왔다.",
+      "tags": {
+        "status": "closed"
+      }
+    },
+    {
+      "id": "7ad78ae138",
+      "thread": "night_light",
+      "day": 13,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "b0b21bd5a4",
+      "thread": "moon",
+      "day": 14,
+      "period": "day1",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "a7482d5c73",
+      "thread": "moon",
+      "day": 14,
+      "period": "day2",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "f4c90d5772",
+      "thread": "night_light",
+      "day": 14,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": true,
+        "angle_shift": true
+      }
+    },
+    {
+      "id": "b31bd36a85",
+      "thread": "moon",
+      "day": 15,
+      "period": "day1",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "07407ffe01",
+      "thread": "moon",
+      "day": 15,
+      "period": "day2",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "1a55c17ae7",
+      "thread": "night_light",
+      "day": 15,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": true,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "f0059a3acc",
+      "thread": "night_light",
+      "day": 16,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": true
+      }
+    },
+    {
+      "id": "d0ba761778",
+      "thread": "night_light",
+      "day": 17,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "490b0ee223",
+      "thread": "moon",
+      "day": 18,
+      "period": "day1",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "bbbbae4211",
+      "thread": "moon",
+      "day": 18,
+      "period": "day2",
+      "text": "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+      "tags": {}
+    },
+    {
+      "id": "dcfed1cd5c",
+      "thread": "night_light",
+      "day": 18,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": false
+      }
+    },
+    {
+      "id": "574a6ed97f",
+      "thread": "night_light",
+      "day": 19,
+      "period": "night",
+      "text": "깜빡이는 간격도 봐야 하나 싶다.",
+      "tags": {
+        "blinking": false,
+        "angle_shift": false
+      }
+    }
+  ],
+  "infos": [
+    {
+      "id": "6382cb9eb0",
+      "thread": "night_light",
+      "day": 21,
+      "source": "computer",
+      "text": "야간 조업 중인 어선의 불빛일 수 있다."
+    },
+    {
+      "id": "4503f5f759",
+      "thread": "night_light",
+      "day": 21,
+      "source": "computer",
+      "text": "선박 항해등일 수 있다 (좌우현에 따라 색이 다르다는 설명도 있다)."
+    },
+    {
+      "id": "b5682c5436",
+      "thread": "night_light",
+      "day": 21,
+      "source": "computer",
+      "text": "등대 불빛일 수 있다."
+    },
+    {
+      "id": "279b9d2305",
+      "thread": "night_light",
+      "day": 21,
+      "source": "computer",
+      "text": "등부표(바다 위에 뜬 작은 표지)의 불빛일 수 있다."
+    },
+    {
+      "id": "2733276435",
+      "thread": "night_light",
+      "day": 21,
+      "source": "computer",
+      "text": "항로표지 전반에 대한 일반 설명도 나온다."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "97e00b3d98",
+      "thread": "night_light",
+      "created_day": 20,
+      "text": "저건 배일지도 모른다.",
+      "status": "revised",
+      "revisions": [
+        {
+          "day": 20,
+          "period": "sunset",
+          "status": "guess",
+          "text": "저건 배일지도 모른다.",
+          "reason": ""
+        },
+        {
+          "day": 20,
+          "period": "evening",
+          "status": "revised",
+          "text": "저건 배일지도 모른다. — 위치 변화 확인 못 함. 재검토 필요.",
+          "reason": "재관찰 결과와 맞지 않는 부분이 있다."
+        },
+        {
+          "day": 20,
+          "period": "night",
+          "status": "revised",
+          "text": "저건 배일지도 모른다. — 위치 변화 확인 못 함. 재검토 필요. (계속 지켜보는 중)",
+          "reason": "재관찰 결과와 맞지 않는 부분이 있다."
+        }
+      ]
+    }
+  ],
+  "discoveries": [
+    {
+      "id": "9a156bcbec",
+      "day": 1,
+      "period": "day2",
+      "text": "쌍안경을 챙겼다."
+    }
+  ],
+  "memo_wall": {
+    "night_light": "여기서는 각도가 거의 같다. 다른 위치에서 봐야 할 것 같다."
+  },
+  "threads": {
+    "night_light": {
+      "id": "night_light",
+      "observation_count": 11,
+      "revision_count": 2,
+      "exit_ready": true
+    },
+    "moon": {
+      "id": "moon",
+      "observation_count": 8,
+      "revision_count": 0,
+      "exit_ready": false
+    },
+    "restaurant": {
+      "id": "restaurant",
+      "observation_count": 2,
+      "revision_count": 0,
+      "exit_ready": false
+    }
+  },
+  "items": [
+    "쌍안경"
+  ],
+  "books_read": [],
+  "searches": [
+    {
+      "query": "바다 불빛",
+      "day": 21,
+      "period": "morning"
+    }
+  ],
+  "window_resolution": 1,
+  "binoculars_fumbled_once": false,
+  "zero_turn_counts": {
+    "mirror|3|morning": 1,
+    "bookshelf|3|morning": 9,
+    "window|8|day1": 1,
+    "rest_return|12": 1,
+    "rest_return|13": 1,
+    "window|17|day2": 9,
+    "memowall|20|sunset": 1,
+    "memowall|20|evening": 1
+  },
+  "interaction_log": [
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "day1"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "sunset"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "evening"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "night"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "dawn"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "morning"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "day1"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "day2"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "sunset"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "evening"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "night"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bed",
+      "action": "lie_down",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "mail",
+      "action": "check",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "skim",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "day2"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "day2"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "dawn"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "day2"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 5,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "day2"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 6,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "day2"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 7,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 8,
+      "period": "dawn"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 8,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 8,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 8,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 8,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 8,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 8,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 8,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 9,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 10,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 11,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 12,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 13,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 14,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 15,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 16,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "glance",
+      "day": 17,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 17,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 18,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 19,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 20,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 20,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 20,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 20,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 20,
+      "period": "sunset"
+    },
+    {
+      "object": "memowall",
+      "action": "check",
+      "day": 20,
+      "period": "sunset"
+    },
+    {
+      "object": "desk",
+      "action": "hypothesis",
+      "day": 20,
+      "period": "evening"
+    },
+    {
+      "object": "memowall",
+      "action": "check",
+      "day": 20,
+      "period": "evening"
+    },
+    {
+      "object": "desk",
+      "action": "hypothesis",
+      "day": 20,
+      "period": "night"
+    },
+    {
+      "object": "desk",
+      "action": "hypothesis",
+      "day": 21,
+      "period": "morning"
+    },
+    {
+      "object": "computer",
+      "action": "search",
+      "day": 21,
+      "period": "day1"
+    }
+  ],
+  "exit_unlocked": true,
+  "ended": false,
+  "log": [
+    "[D1 아침] 낯선 방. 창밖으로 바다가 보인다. 아직 다 풀지 못한 이삿짐 상자들이 쌓여 있다.",
+    "[D1 아침] 나가서 뭐 하지.",
+    "[D1 아침] 나가서 뭐 하지.",
+    "[D1 아침] 나가서 뭐 하지.",
+    "[D1 아침] 상자 하나를 열었다. 옷가지뿐이다.",
+    "[D1 낮] 다른 상자에는 그릇 몇 개와 신문지 뭉치가 들어 있었다.",
+    "[D1 오후] 구석 상자를 열자 오래된 쌍안경이 나왔다. 손에 쥐어 보니 묵직하다.",
+    "[D1 해질녘] 작은 상자에서 접힌 지도 한 장이 나왔다. 펼쳐 보진 않고 다시 넣어뒀다.",
+    "[D1 저녁] 마지막 상자는 거의 비어 있다. 신문지만 가득하다.",
+    "[D1 밤] 더 정리할 건 없어 보인다.",
+    "[D2 새벽] ── 어느새 잠들었다. Day 2 새벽, 눈을 떴다. ──",
+    "[D2 새벽] 더 정리할 건 없어 보인다.",
+    "[D2 아침] 더 정리할 건 없어 보인다.",
+    "[D2 낮] 더 정리할 건 없어 보인다.",
+    "[D2 오후] 더 정리할 건 없어 보인다.",
+    "[D2 해질녘] 더 정리할 건 없어 보인다.",
+    "[D2 저녁] 더 정리할 건 없어 보인다.",
+    "[D2 밤] 더 정리할 건 없어 보인다.",
+    "[D3 아침] ── 어느새 잠들었다. Day 3 아침, 눈을 떴다. ──",
+    "[D3 아침] 잠깐 누워 있었다. 창밖 소리가 들렸다.",
+    "[D3 아침] 누워서 눈을 감았다 떴다. 방이 조용하다.",
+    "[D3 아침] 잠깐 누워 있었다. 창밖 소리가 들렸다.",
+    "[D3 아침] 누워서 눈을 감았다 떴다. 방이 조용하다.",
+    "[D3 아침] 침대에 누워 천장을 봤다. 딱히 생각나는 건 없다.",
+    "[D3 아침] 침대에 누워 천장을 봤다. 딱히 생각나는 건 없다.",
+    "[D3 아침] 잠깐 누워 있었다. 창밖 소리가 들렸다.",
+    "[D3 아침] 잠깐 누워 있었다. 창밖 소리가 들렸다.",
+    "[D3 아침] 잠깐 누워 있었다. 창밖 소리가 들렸다.",
+    "[D3 아침] 침대에 누워 천장을 봤다. 딱히 생각나는 건 없다.",
+    "[D3 아침] 거울 속 얼굴을 잠깐 봤다. 평소와 비슷하다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 광고 전단지 한 장. 바로 접어 뒀다.",
+    "[D3 아침] 관리비 고지서가 와 있었다. 대수롭지 않게 치웠다.",
+    "[D3 아침] 책등을 훑어봤다. 낯익은 제목들이다.",
+    "[D3 아침] 책등을 훑어봤다. 낯익은 제목들이다.",
+    "[D3 아침] 책등을 훑어봤다. 낯익은 제목들이다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 책등은 아까 다 훑어봤다.",
+    "[D3 아침] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D3 낮] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D3 오후] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D3 해질녘] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D3 저녁] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D3 밤] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D4 아침] ── 어느새 잠들었다. Day 4 아침, 눈을 떴다. ──",
+    "[D4 아침] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 낮] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D4 오후] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D4 해질녘] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 저녁] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 밤] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D5 새벽] ── 어느새 잠들었다. Day 5 새벽, 눈을 떴다. ──",
+    "[D5 새벽] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D5 아침] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D5 낮] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D5 오후] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D5 해질녘] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D5 저녁] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D5 밤] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D6 아침] ── 어느새 잠들었다. Day 6 아침, 눈을 떴다. ──",
+    "[D6 아침] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D6 낮] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D6 오후] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D6 해질녘] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D6 저녁] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D6 밤] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D7 아침] ── 어느새 잠들었다. Day 7 아침, 눈을 떴다. ──",
+    "[D7 아침] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D7 낮] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D7 오후] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D7 해질녘] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D7 저녁] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D7 밤] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D8 새벽] ── 어느새 잠들었다. Day 8 새벽, 눈을 떴다. ──",
+    "[D8 새벽] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D8 아침] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D8 낮] 창문 너머로 눈이 갔다.",
+    "[D8 낮] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D8 오후] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D8 해질녘] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D8 저녁] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D8 밤] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D9 새벽] ── 어느새 잠들었다. Day 9 새벽, 눈을 떴다. ──",
+    "[D9 새벽] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D9 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D9 아침] 이번엔 어쩐지 창밖 풍경이 더 또렷하게 구분돼 보인다. 바다, 하늘, 앞마당, 횟집...",
+    "[D9 낮] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D9 오후] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D9 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D9 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D9 밤] 밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+    "[D10 새벽] ── 어느새 잠들었다. Day 10 새벽, 눈을 떴다. ──",
+    "[D10 새벽] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D10 아침] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D10 낮] 낮 하늘에 달이 떠 있다. '달? 낮인데.' 하는 생각이 스쳤다.",
+    "[D10 오후] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D10 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D10 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D10 밤] 어제와 비슷하다.",
+    "[D11 새벽] ── 어느새 잠들었다. Day 11 새벽, 눈을 떴다. ──",
+    "[D11 새벽] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D11 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D11 낮] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D11 오후] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D11 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D11 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D11 밤] 위치도 비슷한 것 같다.",
+    "[D12 새벽] ── 어느새 잠들었다. Day 12 새벽, 눈을 떴다. ──",
+    "[D12 새벽] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D12 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D12 낮] 아저씨가 상자를 들고 돌아왔다.",
+    "[D12 오후] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D12 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D12 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D12 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D13 아침] ── 어느새 잠들었다. Day 13 아침, 눈을 떴다. ──",
+    "[D13 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D13 낮] 아저씨가 상자를 들고 돌아왔다.",
+    "[D13 오후] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D13 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D13 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D13 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D14 새벽] ── 어느새 잠들었다. Day 14 새벽, 눈을 떴다. ──",
+    "[D14 새벽] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D14 아침] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D14 낮] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D14 오후] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D14 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D14 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D14 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D15 아침] ── 어느새 잠들었다. Day 15 아침, 눈을 떴다. ──",
+    "[D15 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D15 낮] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D15 오후] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D15 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D15 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D15 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D16 아침] ── 어느새 잠들었다. Day 16 아침, 눈을 떴다. ──",
+    "[D16 아침] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D16 낮] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D16 오후] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D16 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D16 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D16 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D17 아침] ── 어느새 잠들었다. Day 17 아침, 눈을 떴다. ──",
+    "[D17 아침] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D17 낮] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D17 오후] 창문 너머로 눈이 갔다.",
+    "[D17 오후] 창문 너머로 눈이 갔다.",
+    "[D17 오후] 잠깐 밖을 살폈다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 아까 충분히 봤다. 딱히 달라진 건 없다.",
+    "[D17 오후] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D17 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D17 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D17 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D18 새벽] ── 어느새 잠들었다. Day 18 새벽, 눈을 떴다. ──",
+    "[D18 새벽] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D18 아침] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D18 낮] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D18 오후] 왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다.",
+    "[D18 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D18 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D18 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D19 새벽] ── 어느새 잠들었다. Day 19 새벽, 눈을 떴다. ──",
+    "[D19 새벽] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D19 아침] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D19 낮] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D19 오후] 창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.",
+    "[D19 해질녘] 횟집이 개점 준비로 분주하다.",
+    "[D19 저녁] 횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다.",
+    "[D19 밤] 깜빡이는 간격도 봐야 하나 싶다.",
+    "[D20 새벽] ── 어느새 잠들었다. Day 20 새벽, 눈을 떴다. ──",
+    "[D20 새벽] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D20 아침] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D20 낮] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D20 오후] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D20 해질녘] 메모벽은 아직 비어 있다.",
+    "[D20 해질녘] 책상 앞에 앉아 가설을 적었다: “저건 배일지도 모른다.”",
+    "[D20 저녁] 메모벽은 아직 비어 있다.",
+    "[D20 저녁] 이젠 여기서 더 볼 수 있는 게 없는 것 같다. 직접 나가서 확인해야 할 것 같다.",
+    "[D20 저녁] 책상에서 기존 가설을 다시 봤다: “저건 배일지도 모른다. — 위치 변화 확인 못 함. 재검토 필요.”",
+    "[D20 밤] 책상에서 기존 가설을 다시 봤다: “저건 배일지도 모른다. — 위치 변화 확인 못 함. 재검토 필요. (계속 지켜보는 중)”",
+    "[D21 아침] ── 어느새 잠들었다. Day 21 아침, 눈을 떴다. ──",
+    "[D21 아침] '바다 불빛'(으)로 검색했다. 여러 후보가 나왔다."
+  ]
+}

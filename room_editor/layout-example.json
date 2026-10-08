@@ -1,0 +1,186 @@
+{
+  "format": "intp-room-layout",
+  "version": 1,
+  "savedAt": "2026-10-08T00:00:00.000Z",
+  "coordinateSystem": {
+    "width": 1200,
+    "height": 800,
+    "unit": "room-px",
+    "origin": "top-left",
+    "anchor": "center",
+    "note": "방 배경 원본 이미지(1200x800) 픽셀 좌표. x,y는 가구 이미지 중심점. z가 클수록 앞."
+  },
+  "furniture": [
+    {
+      "id": "bed",
+      "name": "침대",
+      "x": 288,
+      "y": 528,
+      "width": 300,
+      "height": 233.9,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 4,
+      "visible": true,
+      "bounds": {
+        "left": 138.0,
+        "top": 411.0,
+        "right": 438.0,
+        "bottom": 645.0
+      }
+    },
+    {
+      "id": "desk",
+      "name": "책상",
+      "x": 564,
+      "y": 456,
+      "width": 270.0,
+      "height": 272.3,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 6,
+      "visible": true,
+      "bounds": {
+        "left": 429.0,
+        "top": 319.8,
+        "right": 699.0,
+        "bottom": 592.2
+      }
+    },
+    {
+      "id": "board",
+      "name": "칠판",
+      "x": 288,
+      "y": 304,
+      "width": 187.3,
+      "height": 219.3,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 3,
+      "visible": true,
+      "bounds": {
+        "left": 194.3,
+        "top": 194.4,
+        "right": 381.7,
+        "bottom": 413.6
+      }
+    },
+    {
+      "id": "window",
+      "name": "창문",
+      "x": 912,
+      "y": 312,
+      "width": 218.8,
+      "height": 283.1,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 1,
+      "visible": true,
+      "bounds": {
+        "left": 802.6,
+        "top": 170.5,
+        "right": 1021.4,
+        "bottom": 453.5
+      }
+    },
+    {
+      "id": "boxes",
+      "name": "이삿짐",
+      "x": 468,
+      "y": 616,
+      "width": 144,
+      "height": 82.9,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 8,
+      "visible": true,
+      "bounds": {
+        "left": 396.0,
+        "top": 574.6,
+        "right": 540.0,
+        "bottom": 657.4
+      }
+    },
+    {
+      "id": "radio",
+      "name": "라디오",
+      "x": 816,
+      "y": 600,
+      "width": 144,
+      "height": 121.8,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 9,
+      "visible": true,
+      "bounds": {
+        "left": 744.0,
+        "top": 539.1,
+        "right": 888.0,
+        "bottom": 660.9
+      }
+    },
+    {
+      "id": "drawer",
+      "name": "편지 서랍장",
+      "x": 936,
+      "y": 528,
+      "width": 132,
+      "height": 129.8,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 7,
+      "visible": true,
+      "bounds": {
+        "left": 870.0,
+        "top": 463.1,
+        "right": 1002.0,
+        "bottom": 592.9
+      }
+    },
+    {
+      "id": "mirror",
+      "name": "거울",
+      "x": 144,
+      "y": 376,
+      "width": 135.1,
+      "height": 267.6,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 2,
+      "visible": true,
+      "bounds": {
+        "left": 76.4,
+        "top": 242.2,
+        "right": 211.6,
+        "bottom": 509.8
+      }
+    },
+    {
+      "id": "shelf",
+      "name": "책장",
+      "x": 708,
+      "y": 384,
+      "width": 144,
+      "height": 297.1,
+      "scale": 1,
+      "rotation": 0,
+      "aspectLocked": true,
+      "z": 5,
+      "visible": true,
+      "bounds": {
+        "left": 636.0,
+        "top": 235.4,
+        "right": 780.0,
+        "bottom": 532.6
+      }
+    }
+  ]
+}
