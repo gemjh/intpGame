@@ -1,9 +1,9 @@
 /* ===== INTP 키우기 — 가구 접근/상호작용 + 실제 엔진 연동 =====
  * game.js(이동/충돌) 다음에 실행된다. 여기서 하는 일은 두 가지뿐이다:
  *   ① 가구를 눌러도 멀리 있으면 그 자리로 걸어간 뒤에야 상호작용이 열리게 한다 ("가구 접근").
- *   ② 실제 관찰→질문→탐구→가설→검증 콘텐츠/로직은 전부 기존 FastAPI 엔진(/api/*)에서 그대로
- *      가져와서 보여준다 — 이 파일은 콘텐츠를 새로 만들지 않는다. 엔진(app/engine/*)은 전혀
- *      건드리지 않았고, 가구 좌표/배치도 여기서 바꾸지 않는다.
+ *   ② 실제 관찰→질문→탐구→가설→검증 콘텐츠/로직은 전부 FastAPI 엔진(/api/*)에서 가져와서
+ *      보여준다 — 이 파일은 콘텐츠를 새로 만들지 않는다. 가구 좌표/배치도 여기서 바꾸지 않는다.
+ *      (창문 대상 목록은 스냅샷의 window.subjects 를 그대로 버튼으로 만든다.)
  *
  * 새 방의 가구 9종 vs 기존 엔진 오브젝트(11종: window/boxes/desk/computer/bookshelf/mirror/
  * bed/radio/memowall/mail/door) 매핑:
@@ -145,18 +145,15 @@
     const hasBinoculars = snap.items.includes('쌍안경');
     switch (objectId) {
       case 'window': {
-        const zoom = { action: 'zoom', label: '쌍안경으로 확대해서 보기 (1턴)' };
-        const base = snap.window_resolution >= 1 ? [
-          { action: 'glance', label: '잠깐 보기 (0턴)' },
-          { action: 'observe', label: '바다 관찰하기', payload: { region: 'sea' } },
-          { action: 'observe', label: '하늘 관찰하기', payload: { region: 'sky' } },
-          { action: 'observe', label: '앞마당 관찰하기', payload: { region: 'yard' } },
-          { action: 'observe', label: '횟집 관찰하기', payload: { region: 'restaurant' } },
-        ] : [
-          { action: 'glance', label: '잠깐 보기 (0턴)' },
-          { action: 'observe', label: '관찰하기 (1턴)' },
-        ];
-        return hasBinoculars ? [...base, zoom] : base;
+        // 명세서 261011 WIN-01: 대상을 고르는 것 자체는 턴을 쓰지 않고, 관찰을 실행하면 정확히 1턴.
+        // 강아지 라벨은 이름을 알게 된 뒤 서버가 '두식이'로 바꿔 보내준다.
+        const subjects = (snap.window && snap.window.subjects) || [];
+        const acts = subjects.map(s => ({
+          action: 'observe', label: s.label + ' 보기 (1턴)', payload: { subject: s.id }
+        }));
+        acts.push({ action: 'observe', label: '그냥 바라본다 (1턴)', payload: { subject: 'any' } });
+        if (hasBinoculars) acts.push({ action: 'zoom', label: '쌍안경으로 확대해서 보기 (1턴)' });
+        return acts;
       }
       case 'boxes': return [{ action: 'organize', label: '정리하기 (1턴)' }];
       case 'bookshelf': return [
