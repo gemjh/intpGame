@@ -92,7 +92,7 @@ class ThreadState:
 
 @dataclass
 class GameState:
-    version: int = 1
+    version: int = 2  # 2: 창문 관찰 이력/사실 플래그/지식 필드 추가 (v1 세이브는 그대로 로드됨)
     day: int = 1
     period: str = "morning"
     seed: int = 1
@@ -109,11 +109,24 @@ class GameState:
     items: list = field(default_factory=list)            # 예: "쌍안경"
     books_read: list = field(default_factory=list)
     searches: list = field(default_factory=list)
-    window_resolution: int = 0                            # 창문 관찰 해상도 (0=창밖 뭉뚱그림, 1+=세부 구분)
+    window_resolution: int = 0                            # (v1 호환용, 더 이상 쓰지 않음 — 시작부터 5개 대상 선택 가능)
     binoculars_fumbled_once: bool = False                  # 쌍안경 첫 사용: 좁은 시야 때문에 한 번 놓치는 연출을 이미 겪었는지
 
     zero_turn_counts: dict = field(default_factory=dict)  # "{object}|{day}|{period}" -> 횟수
     interaction_log: list = field(default_factory=list)   # 상호작용 기록 (오브젝트id, day, period)
+
+    # ---- 창문 관찰·기록 (명세서 261011). 세이브 v1 에는 없는 필드라 기본값으로 채워진다.
+    observation_history: dict = field(default_factory=dict)  # 문장ID -> {first_seen, last_seen, count}
+    fact_flags: dict = field(default_factory=dict)           # 사실 플래그 -> {first, days[], seen_at[[day,period]]}
+    knowledge: dict = field(default_factory=dict)            # 지식ID -> {status: encountered|understood|applied, sources[]}
+    window_recent: list = field(default_factory=list)        # 최근 출력한 창문 문장 ID (반복 감소용)
+    # ---- 자동 연결 (명세서 261012). 이 필드가 없는 기존 v2 세이브는 빈 이력으로 로드된다.
+    connections: dict = field(default_factory=dict)          # 연결ID -> {stage, first_day, last_day, trigger_observation_id, evidence[], history[]}
+    # 2·3차 범위 — 데이터 설계만 선반영 (아직 이 필드를 채우는 기능 없음)
+    questions: dict = field(default_factory=dict)            # 질문ID -> {state: arisen|held|revisited}
+    actions_done: dict = field(default_factory=dict)         # 탐구 행동ID -> 이력
+    npc_relations: dict = field(default_factory=dict)        # 예: {"dog": {"name_known": true}}
+    free_notes: list = field(default_factory=list)           # 자유 메모
 
     exit_unlocked: bool = False   # 문이 [확인하러 간다]로 바뀌었는지
     ended: bool = False           # Vertical Slice End 에 도달했는지
@@ -144,4 +157,5 @@ def state_from_dict(d: dict) -> GameState:
         elif k == "threads":
             v = {tid: ThreadState(**t) for tid, t in v.items()}
         setattr(s, k, v)
+    s.version = GameState.version  # v1 -> v2: 새 필드는 기본값(빈 이력)으로 시작한다
     return s

@@ -1,0 +1,136 @@
+{
+  "version": 2,
+  "day": 2,
+  "period": "day2",
+  "seed": 1,
+  "world_log": [],
+  "observations": [
+    {
+      "id": "313ecb7424",
+      "thread": "night_light",
+      "day": 1,
+      "period": "night",
+      "text": "밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+      "tags": {
+        "color": "white",
+        "side": "오른쪽",
+        "blinking": true
+      }
+    }
+  ],
+  "infos": [
+    {
+      "id": "68d501b098",
+      "thread": "night_light",
+      "day": 2,
+      "source": "computer",
+      "text": "야간 조업 중인 어선의 불빛일 수 있다."
+    },
+    {
+      "id": "9a3f3b0899",
+      "thread": "night_light",
+      "day": 2,
+      "source": "computer",
+      "text": "선박 항해등일 수 있다 (좌우현에 따라 색이 다르다는 설명도 있다)."
+    },
+    {
+      "id": "f495ecfdbd",
+      "thread": "night_light",
+      "day": 2,
+      "source": "computer",
+      "text": "등대 불빛일 수 있다."
+    },
+    {
+      "id": "b137f54ff7",
+      "thread": "night_light",
+      "day": 2,
+      "source": "computer",
+      "text": "등부표(바다 위에 뜬 작은 표지)의 불빛일 수 있다."
+    },
+    {
+      "id": "ffa89cb60a",
+      "thread": "night_light",
+      "day": 2,
+      "source": "computer",
+      "text": "항로표지 전반에 대한 일반 설명도 나온다."
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "ecb1b61636",
+      "thread": "night_light",
+      "created_day": 2,
+      "text": "저건 배일지도 모른다.",
+      "status": "guess",
+      "revisions": [
+        {
+          "day": 2,
+          "period": "morning",
+          "status": "guess",
+          "text": "저건 배일지도 모른다.",
+          "reason": ""
+        }
+      ]
+    }
+  ],
+  "discoveries": [],
+  "memo_wall": {},
+  "threads": {
+    "night_light": {
+      "id": "night_light",
+      "observation_count": 1,
+      "revision_count": 0,
+      "exit_ready": false
+    }
+  },
+  "items": [],
+  "books_read": [],
+  "searches": [
+    {
+      "query": "바다 불빛",
+      "day": 2,
+      "period": "day1"
+    }
+  ],
+  "window_resolution": 0,
+  "binoculars_fumbled_once": false,
+  "zero_turn_counts": {},
+  "interaction_log": [
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 2,
+      "period": "morning"
+    },
+    {
+      "object": "desk",
+      "action": "hypothesis",
+      "day": 2,
+      "period": "day1"
+    },
+    {
+      "object": "computer",
+      "action": "search",
+      "day": 2,
+      "period": "day2"
+    }
+  ],
+  "observation_history": {},
+  "fact_flags": {},
+  "knowledge": {},
+  "window_recent": [],
+  "connections": {},
+  "questions": {},
+  "actions_done": {},
+  "npc_relations": {},
+  "free_notes": [],
+  "exit_unlocked": false,
+  "ended": false,
+  "log": [
+    "[D1 아침] 낯선 방. 창밖으로 바다가 보인다. 아직 다 풀지 못한 이삿짐 상자들이 쌓여 있다.",
+    "[D1 밤] 밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+    "[D2 아침] ── 어느새 잠들었다. Day 2 아침, 눈을 떴다. ──",
+    "[D2 아침] 책상 앞에 앉아 가설을 적었다: “저건 배일지도 모른다.”",
+    "[D2 낮] '바다 불빛'(으)로 검색했다. 여러 후보가 나왔다."
+  ]
+}

@@ -14,7 +14,7 @@ import random
 import uuid
 from dataclasses import asdict
 
-from . import content, world
+from . import connection, content, window, window_content, world
 from .models import (
     GameState, Observation, InfoEntry, Hypothesis, HypothesisRevision,
     Discovery, ThreadState, PERIODS, PERIOD_LABELS, ZERO_TURN_REPEAT_LIMIT,
@@ -144,10 +144,14 @@ def _h_window_glance(state: GameState, payload: dict) -> dict:
     return {"text": text, "turn_cost": 0}
 
 
-def _window_observe_world(state: GameState, region: str | None) -> dict:
+# 기존 세계 이벤트(밤바다 불빛/낮달/아저씨 귀환/고양이)는 세계의 사실(world.py)이 그 시점에 실제로
+# 일어나고 있을 때, 그 대상을 처음 본 그날 한 번 우선해서 보여준다. 그 외에는 148문장 후보에서 고른다.
+def _legacy_world_event(state: GameState, subject: str | None) -> dict | None:
     day, period, seed = state.day, state.period, state.seed
+    looks_at = (lambda s: subject in (None, window.ANY, s))
+    seen_today = (lambda thread: any(o.thread == thread and o.day == day for o in state.observations))
 
-    if region in (None, "sea") and world.night_light_visible(day, period, seed):
+    if looks_at("sea") and world.night_light_visible(day, period, seed) and not seen_today("night_light"):
         t = _thread(state, "night_light")
         variant = world.night_light_variant(day, seed)
         if t.observation_count == 0:
@@ -158,60 +162,76 @@ def _window_observe_world(state: GameState, region: str | None) -> dict:
             text = content.NIGHT_LIGHT_REOBSERVE_STAGES[stage_idx]
             tags = {"blinking": variant["blinking"], "angle_shift": variant["angle_shift"]}
         obs = _add_observation(state, "night_light", text, tags)
-        return {"text": text, "thread": "night_light", "observation_id": obs.id}
+        return {"text": text, "subject": "sea", "thread": "night_light", "observation_id": obs.id}
 
-    if region in (None, "sky") and world.daytime_moon_visible(day, period, seed):
+    if looks_at("sky") and world.daytime_moon_visible(day, period, seed) and not seen_today("moon"):
         t = _thread(state, "moon")
         if t.observation_count == 0:
             text = "낮 하늘에 달이 떠 있다. '달? 낮인데.' 하는 생각이 스쳤다."
         else:
             text = "왜 낮에 달이 있으면 이상하다고 생각했는지, 그 생각이 계속 맴돈다."
         obs = _add_observation(state, "moon", text)
-        return {"text": text, "thread": "moon", "observation_id": obs.id}
+        window.record_facts(state, window_content.LEGACY_EFFECTS["moon"] + ["subject:sky"])
+        return {"text": text, "subject": "sky", "thread": "moon", "observation_id": obs.id}
 
-    if region in (None, "restaurant"):
-        status = world.restaurant_status(day, period, seed)
-        if period in ("day1", "day2") and world.owner_returns_at_day(day, seed):
-            key = f"rest_return|{day}"
-            if key not in state.zero_turn_counts:  # 하루에 한 번만 기록
-                state.zero_turn_counts[key] = 1
-                text = "아저씨가 상자를 들고 돌아왔다."  # 못 본 출항은 적지 않는다 (관찰한 것만 기록)
-                obs = _add_observation(state, "restaurant", text, {"status": status})
-                return {"text": text, "thread": "restaurant", "observation_id": obs.id}
-        if period == "sunset" and status == "prep":
-            text = "횟집이 개점 준비로 분주하다."
-            return {"text": text, "thread": None}
-        if period in ("evening", "night") and status == "open":
-            text = "횟집에 불이 켜져 있다. 오늘은 영업하는 모양이다."
-            return {"text": text, "thread": None}
+    if looks_at("shop") and period in ("day1", "day2") and world.owner_returns_at_day(day, seed):
+        key = f"rest_return|{day}"
+        if key not in state.zero_turn_counts:  # 하루에 한 번만 기록
+            state.zero_turn_counts[key] = 1
+            status = world.restaurant_status(day, period, seed)
+            text = "아저씨가 상자를 들고 돌아왔다."  # 못 본 출항은 적지 않는다 (관찰한 것만 기록)
+            obs = _add_observation(state, "restaurant", text, {"status": status})
+            window.record_facts(state, window_content.LEGACY_EFFECTS["restaurant"] + ["subject:shop"])
+            return {"text": text, "subject": "shop", "thread": "restaurant", "observation_id": obs.id}
 
-    if region in (None, "yard") and world.cat_in_yard(day, period, seed):
+    if looks_at("yard") and world.cat_in_yard(day, period, seed) and "cat" not in state.fact_flags:
+        # 처음 보는 고양이. 이 관찰이 있어야 YARD-001("지난번에도 저 길로...")이 출현할 수 있다.
         text = content.MEANINGLESS_WINDOW_EVENTS["cat"]
-        return {"text": text, "thread": None}
+        window.record_facts(state, window_content.LEGACY_EFFECTS["cat"] + ["subject:yard"])
+        return {"text": text, "subject": "yard", "thread": None}
+    return None
 
-    if period == "sunset":
-        text = content.MEANINGLESS_WINDOW_EVENTS["sunset"]
-        return {"text": text, "thread": None}
 
-    return {"text": "창밖엔 딱히 특별할 거 없다. 동네가 평소처럼 조용하다.", "thread": None}
+def _window_observe_world(state: GameState, subject: str | None) -> dict:
+    legacy = _legacy_world_event(state, subject)
+    if legacy is not None:
+        legacy.setdefault("observation_key", None)
+        return legacy
+
+    picked_subject, obs = window.pick(state, subject)
+    if obs is None:
+        # WIN-05: 후보가 없으면 중립 문장. 턴은 쓰지만 발견/지식/질문은 만들지 않는다.
+        return {"text": window_content.NEUTRAL_LINES.get(picked_subject, window_content.NEUTRAL_LINES[None]),
+                "subject": picked_subject, "thread": None, "observation_key": None}
+    rec = window.record_observation(state, obs)
+    # 자동 연결: 이번 관찰까지 반영된 기록으로 판정. 문장은 하나의 일지 항목으로 합치고,
+    # 내부 기록은 observation_history 와 state.connections 에 따로 남는다. 턴 비용은 그대로.
+    conn = connection.check(state, obs)
+    text = obs["text"] if conn is None else f"{obs['text']} {conn['text']}"
+    return {
+        "text": window.render_text(state, text),
+        "subject": obs["subject"],
+        "thread": None,
+        "observation_key": obs["id"],
+        "first_seen": rec["first_seen"],
+        "new_knowledge": rec["new_knowledge"],
+        "connection": None if conn is None else {"id": conn["id"], "stage": conn["stage"]},
+    }
+
+
+_LEGACY_REGION_ALIASES = {"restaurant": "shop"}
 
 
 def _h_window_observe(state: GameState, payload: dict) -> dict:
-    region = payload.get("region")
-    if state.window_resolution == 0:
-        region = None  # 아직 해상도가 낮아 '창밖'으로만 뭉뚱그려 보인다
-    result = _window_observe_world(state, region)
+    """WIN-01~03: 대상(바다/하늘/횟집/강아지/앞마당) 또는 그냥 바라본다(any). 실행마다 정확히 1턴."""
+    subject = payload.get("subject", payload.get("region"))
+    subject = _LEGACY_REGION_ALIASES.get(subject, subject)
+    if subject not in (None, window.ANY, *window_content.SUBJECTS):
+        raise GameError("그쪽은 창문에서 보이지 않아.", 400)
+    result = _window_observe_world(state, subject)
     _log(state, result["text"])
-
-    # 반복 관찰 2회 이후 해상도가 올라가 바다/하늘/앞마당/횟집을 구분해서 볼 수 있게 된다.
-    window_obs_count = sum(1 for e in state.interaction_log if e["object"] == "window" and e["action"] == "observe")
-    if state.window_resolution == 0 and window_obs_count >= 2:
-        state.window_resolution = 1
-        _log(state, "이번엔 어쩐지 창밖 풍경이 더 또렷하게 구분돼 보인다. 바다, 하늘, 앞마당, 횟집...")
-
     result["turn_cost"] = 1
-    result["window_resolution"] = state.window_resolution
-    _advance_time(state, 1)
+    _advance_time(state, 1)  # 시간대/날짜 갱신은 기존 규칙에 위임 (WIN-04)
     return result
 
 
@@ -454,6 +474,13 @@ def snapshot(state: GameState) -> dict:
         "items": list(state.items),
         "memo_wall": list(state.memo_wall.values()),
         "window_resolution": state.window_resolution,
+        "window": {
+            "subjects": [{"id": sid, "label": window.subject_label(state, sid)}
+                         for sid in window_content.SUBJECTS],
+            "seen": len(state.observation_history),
+            "total": len(window_content.OBSERVATIONS),
+            "knowledge_count": len(state.knowledge),
+        },
         "exit_unlocked": state.exit_unlocked,
         "ended": state.ended,
         "log": state.log[-30:],

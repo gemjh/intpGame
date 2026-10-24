@@ -88,6 +88,61 @@
     return { x, y };   // 정말 빠져나갈 곳이 없으면(이론상 거의 없음) 그대로 둔다
   }
 
+  /* ---------- 길찾기 ----------
+   * 직선 이동만으로는 가구(특히 이삿짐 상자)에 막혀 창문 앞까지 못 가는 문제가 있어서,
+   * 직선이 막혀 있으면 격자 BFS로 우회 경로를 찾는다. 목표 지점 자체가 바닥 밖(벽에 걸린 창문 등)
+   * 이면 도달 가능한 칸 중 목표에 가장 가까운 칸까지 간다. */
+  const CELL = 10;
+
+  function lineClear(ax, ay, bx, by, rects) {
+    const n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / 4));
+    for (let i = 1; i <= n; i++) {
+      if (!canStand(ax + (bx - ax) * i / n, ay + (by - ay) * i / n, rects)) return false;
+    }
+    return true;
+  }
+
+  function findPath(sx, sy, tx, ty, rects) {
+    if (canStand(tx, ty, rects) && lineClear(sx, sy, tx, ty, rects)) return [{ x: tx, y: ty }];
+    const cols = Math.ceil(ROOM_W / CELL), rows = Math.ceil(ROOM_H / CELL);
+    const key = (c, r) => r * cols + c;
+    const center = (c, r) => ({ x: c * CELL + CELL / 2, y: r * CELL + CELL / 2 });
+    const sc = Math.floor(sx / CELL), sr = Math.floor(sy / CELL);
+    const prev = new Map([[key(sc, sr), -1]]);
+    const queue = [[sc, sr]];
+    let best = null, bestD = Infinity;
+    for (let qi = 0; qi < queue.length; qi++) {
+      const [c, r] = queue[qi];
+      const p = center(c, r);
+      const d = Math.hypot(p.x - tx, p.y - ty);
+      if (d < bestD) { bestD = d; best = [c, r]; }
+      if (d < CELL) break;
+      for (const [dc, dr] of [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]) {
+        const nc = c + dc, nr = r + dr, k = key(nc, nr);
+        if (nc < 0 || nr < 0 || nc >= cols || nr >= rows || prev.has(k)) continue;
+        const np = center(nc, nr);
+        if (!canStand(np.x, np.y, rects) || !lineClear(p.x, p.y, np.x, np.y, rects)) continue;
+        prev.set(k, key(c, r));
+        queue.push([nc, nr]);
+      }
+    }
+    if (!best) return [];
+    const cells = [];
+    for (let k = key(best[0], best[1]); k !== -1; k = prev.get(k)) cells.push(center(k % cols, Math.floor(k / cols)));
+    cells.reverse();
+    if (canStand(tx, ty, rects)) cells.push({ x: tx, y: ty });
+    // 직선으로 갈 수 있는 중간 지점은 건너뛴다 (지그재그 방지)
+    const path = [];
+    let from = { x: sx, y: sy };
+    for (let i = 0; i < cells.length; i++) {
+      if (i === cells.length - 1 || !lineClear(from.x, from.y, cells[i + 1].x, cells[i + 1].y, rects)) {
+        path.push(cells[i]);
+        from = cells[i];
+      }
+    }
+    return path;
+  }
+
   /* ---------- 캐릭터 DOM / 스프라이트 ---------- */
   // editor.js가 만든 world 레이어(팬/줌 래퍼) 안에 넣어야 같은 좌표계를 공유한다.
   const world = stage.querySelector('.world') || stage;
@@ -101,6 +156,7 @@
   // 시작 위치: 바닥이면서 어떤 가구 발판과도 겹치지 않는 지점(미리 확인한 좌표)
   const pos = { x: 600, y: 650 };
   let target = null;
+  let path = [];             // 남은 경유 지점 (target 다음에 갈 곳들)
   let facing = 'front';      // front/back/left/right 중 마지막으로 바라본 방향
   let walkFrame = 0;         // 0~3, 걷기 애니메이션 프레임
   let frameTimer = 0;
@@ -143,7 +199,8 @@
     if (modal && !modal.classList.contains('hidden')) return;          // 모달이 열려 있으면 이동 무시
     const r = toRoom(e.clientX, e.clientY);
     if (!pointInPoly(r.x, r.y, FLOOR_POLY)) return;   // 바닥 밖 탭은 무시 (보정은 다음 단계 과제)
-    target = { x: r.x, y: r.y };
+    path = findPath(pos.x, pos.y, r.x, r.y, footprints());
+    target = path.shift() || null;
   }, { passive: true });
 
   let last = performance.now();
@@ -154,6 +211,7 @@
     if (isEditing()) {
       player.classList.add('player-hidden');
       target = null;
+      path = [];
     } else {
       player.classList.remove('player-hidden');
       const rects = footprints();
@@ -162,12 +220,13 @@
         const free = findNearestFree(pos.x, pos.y, rects);
         pos.x = free.x; pos.y = free.y;
         target = null;
+        path = [];
       }
       if (target) {
         const dx = target.x - pos.x, dy = target.y - pos.y;
         const dist = Math.hypot(dx, dy);
         if (dist < 2) {
-          target = null;
+          target = path.length ? path.shift() : null;
         } else {
           const step = Math.min(dist, SPEED * dt);
           const ux = dx / dist, uy = dy / dist;
@@ -178,6 +237,7 @@
           if (canStand(nx, pos.y, rects)) { pos.x = nx; moved = true; }
           const ny = pos.y + uy * step;
           if (canStand(pos.x, ny, rects)) { pos.y = ny; moved = true; }
+          if (!moved) { target = null; path = []; }   // 완전히 막혔으면 포기
         }
       }
     }
@@ -197,8 +257,11 @@
   // game-interact.js(가구 접근/상호작용)가 이동을 걸고 상태를 읽을 수 있도록 노출
   window.IntpPlayer = {
     getPos: () => ({ x: pos.x, y: pos.y }),
-    setPos: (x, y) => { pos.x = x; pos.y = y; target = null; render(); },
-    walkTo: (x, y) => { target = { x, y }; },
+    setPos: (x, y) => { pos.x = x; pos.y = y; target = null; path = []; render(); },
+    walkTo: (x, y) => {
+      path = findPath(pos.x, pos.y, x, y, footprints());
+      target = path.shift() || null;
+    },
     isMoving: () => !!target
   };
 })();

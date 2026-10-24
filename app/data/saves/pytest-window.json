@@ -1,0 +1,264 @@
+{
+  "version": 2,
+  "day": 1,
+  "period": "day2",
+  "seed": 76,
+  "world_log": [],
+  "observations": [],
+  "infos": [],
+  "hypotheses": [],
+  "discoveries": [],
+  "memo_wall": {},
+  "threads": {},
+  "items": [],
+  "books_read": [],
+  "searches": [],
+  "window_resolution": 0,
+  "binoculars_fumbled_once": false,
+  "zero_turn_counts": {},
+  "interaction_log": [
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 1,
+      "period": "day2"
+    }
+  ],
+  "observation_history": {
+    "DOG-005": {
+      "first_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "count": 1
+    },
+    "SHOP-024": {
+      "first_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "count": 1
+    },
+    "YARD-002": {
+      "first_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "count": 1
+    },
+    "DOG-028": {
+      "first_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "count": 1
+    },
+    "SHOP-025": {
+      "first_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 1,
+        "period": "day1"
+      },
+      "count": 1
+    }
+  },
+  "fact_flags": {
+    "dog_passerby_reaction": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "dog_seen": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "subject:dog": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "dog_owner_reaction": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "owner": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "subject:shop": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "ants": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    },
+    "subject:yard": {
+      "first": {
+        "day": 1,
+        "period": "day1"
+      },
+      "days": [
+        1
+      ],
+      "seen_at": [
+        [
+          1,
+          "day1"
+        ]
+      ]
+    }
+  },
+  "knowledge": {
+    "ant_pheromone": {
+      "status": "encountered",
+      "sources": [
+        {
+          "id": "YARD-002",
+          "day": 1,
+          "period": "day1"
+        }
+      ]
+    }
+  },
+  "window_recent": [
+    "DOG-005",
+    "SHOP-024",
+    "YARD-002",
+    "DOG-028",
+    "SHOP-025"
+  ],
+  "connections": {},
+  "questions": {},
+  "actions_done": {},
+  "npc_relations": {},
+  "free_notes": [],
+  "exit_unlocked": false,
+  "ended": false,
+  "log": [
+    "[D1 아침] 낯선 방. 창밖으로 바다가 보인다. 아직 다 풀지 못한 이삿짐 상자들이 쌓여 있다.",
+    "[D1 낮] 강아지가 가게 앞을 지나가는 사람을 바라본다. 사람이 멀어지자 다시 엎드린다. 일일이 확인하는 것도 꽤 귀찮을 것 같다.",
+    "[D1 낮] 아저씨가 강아지 앞에 쪼그려 앉았다. 강아지가 꼬리를 흔들자 아저씨도 웃는다. 무슨 대화를 나누는 건지, 저 둘만 아는 것 같다.",
+    "[D1 낮] 개미들이 마당 한쪽을 줄지어 지나간다. 개미는 먹이를 발견하면 페로몬으로 이동 경로를 표시하는 종이 많다. 뒤따르는 개미들은 그 화학적 흔적을 따라간다. 길 안내를 냄새로 하는 셈이다.",
+    "[D1 낮] 강아지가 횟집 문 앞에 앉아 있다. 문이 열릴 때마다 고개를 들지만, 나오는 사람을 확인하고는 다시 앉는다. 누군가를 기다리는 걸까. 누구인지는 조금 더 보면 알 수 있겠다.",
+    "[D1 낮] 손님 한 명이 가게를 나서다가 다시 돌아왔다. 아저씨와 몇 마디 나누더니 웃으면서 떠난다. 두고 간 물건이 있었던 걸까. 손에는 아무것도 늘어나지 않았다."
+  ]
+}

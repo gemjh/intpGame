@@ -1,0 +1,1016 @@
+{
+  "version": 2,
+  "day": 6,
+  "period": "evening",
+  "seed": 835948,
+  "world_log": [],
+  "observations": [
+    {
+      "id": "6d65771aab",
+      "thread": "moon",
+      "day": 5,
+      "period": "day1",
+      "text": "낮 하늘에 달이 떠 있다. '달? 낮인데.' 하는 생각이 스쳤다.",
+      "tags": {}
+    },
+    {
+      "id": "52f774ed42",
+      "thread": "night_light",
+      "day": 5,
+      "period": "night",
+      "text": "밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+      "tags": {
+        "color": "white",
+        "side": "왼쪽으로 살짝 더",
+        "blinking": false
+      }
+    }
+  ],
+  "infos": [],
+  "hypotheses": [],
+  "discoveries": [
+    {
+      "id": "beab50aefb",
+      "day": 1,
+      "period": "day2",
+      "text": "쌍안경을 챙겼다."
+    }
+  ],
+  "memo_wall": {},
+  "threads": {
+    "night_light": {
+      "id": "night_light",
+      "observation_count": 1,
+      "revision_count": 0,
+      "exit_ready": false
+    },
+    "moon": {
+      "id": "moon",
+      "observation_count": 1,
+      "revision_count": 0,
+      "exit_ready": false
+    }
+  },
+  "items": [
+    "쌍안경"
+  ],
+  "books_read": [],
+  "searches": [],
+  "window_resolution": 0,
+  "binoculars_fumbled_once": false,
+  "zero_turn_counts": {
+    "memowall|1|morning": 1,
+    "mirror|1|morning": 11,
+    "memowall|4|day2": 1,
+    "mirror|6|evening": 8
+  },
+  "interaction_log": [
+    {
+      "object": "memowall",
+      "action": "check",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 1,
+      "period": "morning"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "day1"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "day2"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "sunset"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "evening"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 1,
+      "period": "night"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "morning"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "day1"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "day2"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "sunset"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "evening"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 2,
+      "period": "night"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 3,
+      "period": "morning"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 3,
+      "period": "day1"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 3,
+      "period": "day2"
+    },
+    {
+      "object": "boxes",
+      "action": "organize",
+      "day": 3,
+      "period": "sunset"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "evening"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 3,
+      "period": "night"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "dawn"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "morning"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "day1"
+    },
+    {
+      "object": "bookshelf",
+      "action": "read",
+      "day": 4,
+      "period": "day2"
+    },
+    {
+      "object": "memowall",
+      "action": "check",
+      "day": 4,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 4,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 4,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 4,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 5,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 5,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 5,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "zoom",
+      "day": 5,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 5,
+      "period": "evening"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 5,
+      "period": "night"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "dawn"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "morning"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "day1"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "day2"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "sunset"
+    },
+    {
+      "object": "window",
+      "action": "observe",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "door",
+      "action": "exit",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    },
+    {
+      "object": "mirror",
+      "action": "glance",
+      "day": 6,
+      "period": "evening"
+    }
+  ],
+  "observation_history": {
+    "SEA-023": {
+      "first_seen": {
+        "day": 4,
+        "period": "day2"
+      },
+      "last_seen": {
+        "day": 4,
+        "period": "day2"
+      },
+      "count": 1
+    },
+    "SKY-009": {
+      "first_seen": {
+        "day": 4,
+        "period": "sunset"
+      },
+      "last_seen": {
+        "day": 4,
+        "period": "sunset"
+      },
+      "count": 1
+    },
+    "SHOP-015": {
+      "first_seen": {
+        "day": 4,
+        "period": "evening"
+      },
+      "last_seen": {
+        "day": 4,
+        "period": "evening"
+      },
+      "count": 1
+    },
+    "DOG-027": {
+      "first_seen": {
+        "day": 5,
+        "period": "morning"
+      },
+      "last_seen": {
+        "day": 5,
+        "period": "morning"
+      },
+      "count": 1
+    },
+    "YARD-008": {
+      "first_seen": {
+        "day": 5,
+        "period": "sunset"
+      },
+      "last_seen": {
+        "day": 5,
+        "period": "sunset"
+      },
+      "count": 1
+    },
+    "SKY-021": {
+      "first_seen": {
+        "day": 5,
+        "period": "evening"
+      },
+      "last_seen": {
+        "day": 5,
+        "period": "evening"
+      },
+      "count": 1
+    },
+    "DOG-024": {
+      "first_seen": {
+        "day": 6,
+        "period": "dawn"
+      },
+      "last_seen": {
+        "day": 6,
+        "period": "dawn"
+      },
+      "count": 1
+    },
+    "SHOP-028": {
+      "first_seen": {
+        "day": 6,
+        "period": "morning"
+      },
+      "last_seen": {
+        "day": 6,
+        "period": "morning"
+      },
+      "count": 1
+    },
+    "SKY-003": {
+      "first_seen": {
+        "day": 6,
+        "period": "day1"
+      },
+      "last_seen": {
+        "day": 6,
+        "period": "day1"
+      },
+      "count": 1
+    },
+    "SEA-032": {
+      "first_seen": {
+        "day": 6,
+        "period": "day2"
+      },
+      "last_seen": {
+        "day": 6,
+        "period": "day2"
+      },
+      "count": 1
+    },
+    "DOG-008": {
+      "first_seen": {
+        "day": 6,
+        "period": "sunset"
+      },
+      "last_seen": {
+        "day": 6,
+        "period": "sunset"
+      },
+      "count": 1
+    }
+  },
+  "fact_flags": {
+    "sea_color": {
+      "first": {
+        "day": 4,
+        "period": "day2"
+      },
+      "days": [
+        4
+      ],
+      "seen_at": [
+        [
+          4,
+          "day2"
+        ]
+      ]
+    },
+    "subject:sea": {
+      "first": {
+        "day": 4,
+        "period": "day2"
+      },
+      "days": [
+        4,
+        6
+      ],
+      "seen_at": [
+        [
+          4,
+          "day2"
+        ],
+        [
+          6,
+          "day2"
+        ]
+      ]
+    },
+    "cloud": {
+      "first": {
+        "day": 4,
+        "period": "sunset"
+      },
+      "days": [
+        4,
+        6
+      ],
+      "seen_at": [
+        [
+          4,
+          "sunset"
+        ],
+        [
+          6,
+          "day1"
+        ]
+      ]
+    },
+    "subject:sky": {
+      "first": {
+        "day": 4,
+        "period": "sunset"
+      },
+      "days": [
+        4,
+        5,
+        6
+      ],
+      "seen_at": [
+        [
+          4,
+          "sunset"
+        ],
+        [
+          5,
+          "day1"
+        ],
+        [
+          5,
+          "evening"
+        ],
+        [
+          6,
+          "day1"
+        ]
+      ]
+    },
+    "fish_box_in": {
+      "first": {
+        "day": 4,
+        "period": "evening"
+      },
+      "days": [
+        4
+      ],
+      "seen_at": [
+        [
+          4,
+          "evening"
+        ]
+      ]
+    },
+    "fish_delivery": {
+      "first": {
+        "day": 4,
+        "period": "evening"
+      },
+      "days": [
+        4
+      ],
+      "seen_at": [
+        [
+          4,
+          "evening"
+        ]
+      ]
+    },
+    "owner": {
+      "first": {
+        "day": 4,
+        "period": "evening"
+      },
+      "days": [
+        4,
+        5
+      ],
+      "seen_at": [
+        [
+          4,
+          "evening"
+        ],
+        [
+          5,
+          "morning"
+        ]
+      ]
+    },
+    "shop_boxes": {
+      "first": {
+        "day": 4,
+        "period": "evening"
+      },
+      "days": [
+        4
+      ],
+      "seen_at": [
+        [
+          4,
+          "evening"
+        ]
+      ]
+    },
+    "subject:shop": {
+      "first": {
+        "day": 4,
+        "period": "evening"
+      },
+      "days": [
+        4,
+        6
+      ],
+      "seen_at": [
+        [
+          4,
+          "evening"
+        ],
+        [
+          6,
+          "morning"
+        ]
+      ]
+    },
+    "cat": {
+      "first": {
+        "day": 4,
+        "period": "night"
+      },
+      "days": [
+        4
+      ],
+      "seen_at": [
+        [
+          4,
+          "night"
+        ]
+      ]
+    },
+    "subject:yard": {
+      "first": {
+        "day": 4,
+        "period": "night"
+      },
+      "days": [
+        4,
+        5
+      ],
+      "seen_at": [
+        [
+          4,
+          "night"
+        ],
+        [
+          5,
+          "sunset"
+        ]
+      ]
+    },
+    "dog_seen": {
+      "first": {
+        "day": 5,
+        "period": "morning"
+      },
+      "days": [
+        5,
+        6
+      ],
+      "seen_at": [
+        [
+          5,
+          "morning"
+        ],
+        [
+          6,
+          "dawn"
+        ],
+        [
+          6,
+          "sunset"
+        ]
+      ]
+    },
+    "subject:dog": {
+      "first": {
+        "day": 5,
+        "period": "morning"
+      },
+      "days": [
+        5,
+        6
+      ],
+      "seen_at": [
+        [
+          5,
+          "morning"
+        ],
+        [
+          6,
+          "dawn"
+        ],
+        [
+          6,
+          "sunset"
+        ]
+      ]
+    },
+    "moon": {
+      "first": {
+        "day": 5,
+        "period": "day1"
+      },
+      "days": [
+        5
+      ],
+      "seen_at": [
+        [
+          5,
+          "day1"
+        ],
+        [
+          5,
+          "evening"
+        ]
+      ]
+    },
+    "spiderweb": {
+      "first": {
+        "day": 5,
+        "period": "sunset"
+      },
+      "days": [
+        5
+      ],
+      "seen_at": [
+        [
+          5,
+          "sunset"
+        ]
+      ]
+    },
+    "sea_ship": {
+      "first": {
+        "day": 6,
+        "period": "day2"
+      },
+      "days": [
+        6
+      ],
+      "seen_at": [
+        [
+          6,
+          "day2"
+        ]
+      ]
+    },
+    "sunny_spot": {
+      "first": {
+        "day": 6,
+        "period": "sunset"
+      },
+      "days": [
+        6
+      ],
+      "seen_at": [
+        [
+          6,
+          "sunset"
+        ]
+      ]
+    }
+  },
+  "knowledge": {
+    "dog_scent_memory": {
+      "status": "encountered",
+      "sources": [
+        {
+          "id": "DOG-027",
+          "day": 5,
+          "period": "morning"
+        }
+      ]
+    },
+    "spider_silk": {
+      "status": "encountered",
+      "sources": [
+        {
+          "id": "YARD-008",
+          "day": 5,
+          "period": "sunset"
+        }
+      ]
+    },
+    "navigation_marks": {
+      "status": "encountered",
+      "sources": [
+        {
+          "id": "SEA-032",
+          "day": 6,
+          "period": "day2"
+        }
+      ]
+    }
+  },
+  "window_recent": [
+    "SKY-009",
+    "SHOP-015",
+    "DOG-027",
+    "YARD-008",
+    "SKY-021",
+    "DOG-024",
+    "SHOP-028",
+    "SKY-003",
+    "SEA-032",
+    "DOG-008"
+  ],
+  "questions": {},
+  "actions_done": {},
+  "npc_relations": {},
+  "free_notes": [],
+  "exit_unlocked": false,
+  "ended": false,
+  "log": [
+    "[D1 아침] 낯선 방. 창밖으로 바다가 보인다. 아직 다 풀지 못한 이삿짐 상자들이 쌓여 있다.",
+    "[D1 아침] 메모벽은 아직 비어 있다.",
+    "[D1 아침] 거울 속 얼굴을 잠깐 봤다. 평소와 비슷하다.",
+    "[D1 아침] 딱히 할 말은 없다. 그냥 나다.",
+    "[D1 아침] 거울 속 얼굴을 잠깐 봤다. 평소와 비슷하다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D1 아침] 상자 하나를 열었다. 옷가지뿐이다.",
+    "[D1 낮] 다른 상자에는 그릇 몇 개와 신문지 뭉치가 들어 있었다.",
+    "[D1 오후] 구석 상자를 열자 오래된 쌍안경이 나왔다. 손에 쥐어 보니 묵직하다.",
+    "[D1 해질녘] 작은 상자에서 접힌 지도 한 장이 나왔다. 펼쳐 보진 않고 다시 넣어뒀다.",
+    "[D1 저녁] 마지막 상자는 거의 비어 있다. 신문지만 가득하다.",
+    "[D1 밤] 더 정리할 건 없어 보인다.",
+    "[D2 아침] ── 어느새 잠들었다. Day 2 아침, 눈을 떴다. ──",
+    "[D2 아침] 더 정리할 건 없어 보인다.",
+    "[D2 낮] 더 정리할 건 없어 보인다.",
+    "[D2 오후] 더 정리할 건 없어 보인다.",
+    "[D2 해질녘] 더 정리할 건 없어 보인다.",
+    "[D2 저녁] 더 정리할 건 없어 보인다.",
+    "[D2 밤] 더 정리할 건 없어 보인다.",
+    "[D3 아침] ── 어느새 잠들었다. Day 3 아침, 눈을 떴다. ──",
+    "[D3 아침] 더 정리할 건 없어 보인다.",
+    "[D3 낮] 더 정리할 건 없어 보인다.",
+    "[D3 오후] 더 정리할 건 없어 보인다.",
+    "[D3 해질녘] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D3 저녁] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D3 밤] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 새벽] ── 어느새 잠들었다. Day 4 새벽, 눈을 떴다. ──",
+    "[D4 새벽] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 아침] 표지가 바랜 잡지를 들춰봤다. 별 내용은 없다.",
+    "[D4 낮] 오래된 소설 한 권을 꺼내 몇 장 넘겨봤다. 지금 당장 끌리진 않는다.",
+    "[D4 오후] 메모벽은 아직 비어 있다.",
+    "[D4 오후] 오늘은 바다가 유난히 푸르다. 어제도 파랬는데, 같은 파란색은 아닌 것 같다.",
+    "[D4 해질녘] 구름 아래쪽이 유난히 어둡다. 비가 오려는 걸까. 구름 색만 보고 판단하기엔 근거가 부족하다.",
+    "[D4 저녁] 횟집 앞에 생선 상자가 도착했다. 아저씨가 곧바로 안으로 옮긴다. 무슨 생선인지는 여기서 보이지 않는다.",
+    "[D4 밤] 앞마당에서 고양이와 눈이 마주쳤다. 한참 쳐다보다가, 고양이가 먼저 시선을 돌렸다. 이겼다.",
+    "[D5 아침] ── 어느새 잠들었다. Day 5 아침, 눈을 떴다. ──",
+    "[D5 아침] 강아지가 아저씨가 벗어둔 작업복에 코를 묻는다. 개는 냄새를 통해 익숙한 사람을 구별하고 기억할 수 있다. 저 옷은 나한테 그냥 옷인데, 저 녀석한테는 아저씨의 흔적이겠구나.",
+    "[D5 낮] 낮 하늘에 달이 떠 있다. '달? 낮인데.' 하는 생각이 스쳤다.",
+    "[D5 오후] 쌍안경을 들었지만 지금은 딱히 당겨 볼 게 없다.",
+    "[D5 해질녘] 담장 구석에 거미줄이 걸려 있다. 거미줄의 모든 실이 끈적한 건 아니다. 원형 그물을 만드는 거미 중에는 끈적한 포획실과 끈적이지 않는 실을 구분해서 사용하는 종류가 있다. 자기 집에 걸리지 않으려면 구조부터 잘 짜야 하는 모양이다.",
+    "[D5 저녁] 대낮인데 달이 떠 있다. 밤에만 보이는 줄 알았는데, 생각해 보니 누가 그런 규칙을 정한 적은 없다.",
+    "[D5 밤] 밤바다 오른쪽에서 흰 불빛을 봤다. 깜빡이는 것처럼 보인다.",
+    "[D6 새벽] ── 어느새 잠들었다. Day 6 새벽, 눈을 떴다. ──",
+    "[D6 새벽] 강아지가 가만히 앉아 바다를 바라본다. 나도 같은 방향을 본다. 같은 풍경을 보고 있지만, 같은 것을 경험하고 있다고 말할 수 있을까.",
+    "[D6 아침] 처음 보는 사람이 가게 앞에서 한참 간판을 올려다본다. 들어갈까 말까 고민하는 줄 알았는데 사진을 찍고 떠났다. 가게를 찾은 게 아니었나 보다.",
+    "[D6 낮] 구름이 길게 늘어져 있다. 처음부터 저 모양이었는지, 움직이면서 변한 건지 모르겠다. 처음부터 봤어야 했다.",
+    "[D6 오후] 부표는 종류에 따라 항로와 위험 구역 등을 알리는 역할을 한다. 하지만 저 부표가 무엇을 뜻하는지는 아직 모르겠다.",
+    "[D6 해질녘] 강아지가 햇볕이 드는 곳에 누웠다. 잠시 뒤 그늘로 옮겨간다. 따뜻한 건 좋지만 너무 더운 건 싫은 모양이다.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 나가서 뭐 하지.",
+    "[D6 저녁] 머리가 좀 헝클어져 있다.",
+    "[D6 저녁] 딱히 할 말은 없다. 그냥 나다.",
+    "[D6 저녁] 머리가 좀 헝클어져 있다.",
+    "[D6 저녁] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D6 저녁] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D6 저녁] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D6 저녁] 거울은 됐다. 아까 본 얼굴 그대로다.",
+    "[D6 저녁] 거울은 됐다. 아까 본 얼굴 그대로다."
+  ]
+}
