@@ -211,7 +211,7 @@ TIME_RULES = {
 # 공급원(발견형 문장·책·탐구)이 아직 없는 지식은 빈 목록 = 충족 불가 (2차 범위).
 KNOWLEDGE_RULES = {
     "너울": {"all": [], "blocked": "공급원 없음(2차: 도서관/탐구)"},
-    "파도_주기": {"all": [], "blocked": "공급원 없음(2차: 파도 주기 탐구)"},
+    "파도_주기": {"all": ["wave_period"]},  # 2차: 책장 '파도 책'에서 접함 (inquiry_content.WAVE_BOOK)
     "조석_원리": {"all": [], "blocked": "공급원 없음(2차)"},
     "지역_조석": {"all": [], "blocked": "SEA-021 자신이 공급원인 순환 조건 — 콘텐츠 확인 필요"},
     "항로표지": {"all": ["navigation_marks"]},
@@ -224,8 +224,14 @@ KNOWLEDGE_RULES = {
     "사회적_참조": {"all": [], "blocked": "공급원 없음(3차: 두식이 감각 탐구)"},
 }
 
-# 경험/질문 조건은 1차 범위에 해당 행동이 없다 -> 충족 불가.
-BLOCKED_PREFIXES = {"경험", "질문"}
+# 경험 조건 -> 실제로 한 탐구 행동(actions_done). 2차: 파도 주기 측정.
+EXPERIENCE_RULES = {
+    "파도_주기_측정": "wave_measure",
+}
+# 질문 조건 -> 붙잡았거나(held) 다시 생각한(revisited) 준비된 질문 ID. None = 그 질문이 아직 콘텐츠에 없음(충족 불가).
+QUESTION_RULES = {
+    "파도_방향": None,  # 파도 방향을 관찰하는 선행 문장·질문이 없음 -> 콘텐츠 보완 필요
+}
 
 # 관찰로 생기는 사실 플래그(REC-02). 문장 출력 횟수가 아니라 "무엇을 봤는지"를 플래그로 남긴다.
 # flag -> 그 사실을 남기는 문장 ID 목록. (LEGACY_* 는 기존 세계 이벤트 관찰)
@@ -385,8 +391,16 @@ for _o in OBSERVATIONS.values():
             assert _r["key"] in KNOWLEDGE_RULES, f"{_o['id']}: 지식 조건 {_r['key']} 규칙 없음"
         elif _r["type"] == "시간":
             assert _r["key"] in TIME_RULES, f"{_o['id']}: 시간 조건 {_r['key']} 규칙 없음"
+        elif _r["type"] == "경험":
+            assert _r["key"] in EXPERIENCE_RULES, f"{_o['id']}: 경험 조건 {_r['key']} 규칙 없음"
+        elif _r["type"] == "질문":
+            assert _r["key"] in QUESTION_RULES, f"{_o['id']}: 질문 조건 {_r['key']} 규칙 없음"
         else:
-            assert _r["type"] in BLOCKED_PREFIXES, f"{_o['id']}: 알 수 없는 조건 {_r}"
+            raise AssertionError(f"{_o['id']}: 알 수 없는 조건 {_r}")
+
+# 기록 화면용 지식 이름 (148문장의 '관련 지식' 열).
+KNOWLEDGE_LABELS = {kid: o["knowledgeLabel"] for o in OBSERVATIONS.values()
+                    for kid in o["knowledgeIds"] if o["knowledgeLabel"]}
 
 # 기존(2026-10-07 빌드) 세계 이벤트 관찰이 남기는 사실 플래그.
 LEGACY_EFFECTS = {

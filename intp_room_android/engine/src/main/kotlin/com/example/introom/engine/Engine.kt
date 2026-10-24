@@ -104,7 +104,7 @@ private fun updateExitReady(state: GameState, threadId: String) {
 // ------------------------------------------------------------------ 상호작용 진입점
 fun interact(state: GameState, objectId: String, actionId: String, playerPos: Pair<Int, Int>? = null, payload: Payload = emptyMap()): Result {
     if (state.ended) throw GameError("이미 끝난 세션이야.", 409)
-    if (playerPos != null) {
+    if (playerPos != null && objectId != "records") { // 기록 화면은 방 안 물건이 아니다
         val (px, py) = playerPos
         if (!isAdjacentToObject(px, py, objectId)) throw GameError("그 오브젝트 근처로 가야 상호작용할 수 있어.", 400)
     }
@@ -204,6 +204,8 @@ private fun windowObserveWorld(state: GameState, subject: String?): MutableMap<S
         "first_seen" to rec.firstSeen,
         "new_knowledge" to rec.newKnowledge,
         "connection" to conn?.let { mapOf("id" to it.id, "stage" to it.stage) },
+        // QST-01: 이 관찰로 처음 떠오른 준비된 질문 (등록 여부는 플레이어가 고른다)
+        "questions" to raiseQuestions(state, obs.id),
     )
 }
 
@@ -367,11 +369,38 @@ private fun hBookshelfRead(state: GameState, payload: Payload): Result {
         }
     }
 
+    readWaveBook(state)?.let { book -> // 2차: 파도를 눈여겨본 뒤에 눈에 들어오는 책 (지식 '접함')
+        log(state, book["text"] as String)
+        advanceTime(state, 1)
+        return mapOf("text" to book["text"], "turn_cost" to 1, "info_gained" to book["info_gained"],
+            "new_knowledge" to listOf(book["knowledge"]))
+    }
+
     val text = BOOKSHELF_GENERIC_BOOKS.random()
     log(state, text)
     advanceTime(state, 1)
     return mapOf("text" to text, "turn_cost" to 1)
 }
+
+// ------------------------------------------------------------------ 파도 주기 탐구 (2차, 5장)
+private fun windowWave(action: (GameState) -> MutableMap<String, Any?>): (GameState, Payload) -> Result = { state, _ ->
+    if (!waveAvailable(state)) throw GameError("아직 파도를 눈여겨본 적이 없다.", 400)
+    val result = action(state)
+    log(state, result["text"] as String)
+    advanceTime(state, result["turn_cost"] as Int)
+    result
+}
+
+private fun hDeskWaveInterpret(state: GameState, payload: Payload): Result {
+    val result = waveInterpret(state, (payload["choice"] as? Number)?.toInt())
+    log(state, result["text"] as String)
+    advanceTime(state, result["turn_cost"] as Int)
+    return result
+}
+
+// ------------------------------------------------------------------ 기록 화면 (REC-03: 0턴)
+private fun hRecordsQuestion(state: GameState, payload: Payload): Result =
+    setQuestionState(state, payload["question"] as? String, payload["question_state"] as? String)
 
 // ------------------------------------------------------------------ 보조 오브젝트
 private fun hMirrorGlance(state: GameState, payload: Payload): Result {
@@ -431,6 +460,10 @@ private val HANDLERS: Map<Pair<String, String>, (GameState, Payload) -> Result> 
     ("window" to "glance") to ::hWindowGlance,
     ("window" to "observe") to ::hWindowObserve,
     ("window" to "zoom") to ::hWindowZoom,
+    ("window" to "wave_count") to windowWave(::waveCount),
+    ("window" to "wave_measure") to windowWave(::waveMeasure),
+    ("desk" to "wave_interpret") to ::hDeskWaveInterpret,
+    ("records" to "question") to ::hRecordsQuestion,
     ("boxes" to "organize") to ::hBoxesOrganize,
     ("desk" to "hypothesis") to ::hDeskHypothesis,
     ("computer" to "search") to ::hComputerSearch,
@@ -491,6 +524,7 @@ fun deskView(state: GameState): Map<String, DeskThreadView> {
         v.hypothesis = mapOf(
             "text" to hyp.latestText(),
             "status" to hyp.status,
+            "status_label" to (HYPOTHESIS_STATUS_LABELS[hyp.status] ?: hyp.status),
             "history" to hyp.revisions.map { mapOf("day" to it.day, "period" to it.period, "status" to it.status, "text" to it.text, "reason" to it.reason) },
         )
     }

@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +23,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -256,7 +259,6 @@ fun RoomScreen(viewModel: GameViewModel) {
     var walkFrame by remember { mutableStateOf(0) }
     var isMoving by remember { mutableStateOf(false) }
     var pending by remember { mutableStateOf<Pair<String, String>?>(null) }
-    var showLog by remember { mutableStateOf(false) }
 
     val footRects = remember(furniture) { footprints(furniture) }
 
@@ -346,7 +348,7 @@ fun RoomScreen(viewModel: GameViewModel) {
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        TopBar(viewModel = viewModel, onLogClick = { showLog = true })
+        TopBar(viewModel = viewModel, onLogClick = { viewModel.openRecords() })
 
         Box(modifier = Modifier.fillMaxWidth().aspectRatio(ROOM_PX_WIDTH / ROOM_PX_HEIGHT)) {
             var boxSize by remember { mutableStateOf(IntSize.Zero) }
@@ -429,8 +431,9 @@ fun RoomScreen(viewModel: GameViewModel) {
         EndScreen(label = endUi.label, onRestart = { viewModel.restart() })
     }
 
-    if (showLog) {
-        LogDialog(lines = viewModel.recentLog(), onClose = { showLog = false })
+    val records by viewModel.records.collectAsState()
+    records?.let { rec ->
+        RecordsDialog(records = rec, onTab = { viewModel.openRecords(it) }, onClose = { viewModel.closeRecords() })
     }
 }
 
@@ -512,13 +515,29 @@ private fun EndScreen(label: String, onRestart: () -> Unit) {
 }
 
 @Composable
-private fun LogDialog(lines: List<String>, onClose: () -> Unit) {
+private fun RecordsDialog(records: RecordsUi, onTab: (String) -> Unit, onClose: () -> Unit) {
     Dialog(onDismissRequest = onClose) {
         Card(shape = RoundedCornerShape(18.dp)) {
             Column(modifier = Modifier.padding(20.dp)) {
                 Text("기록", style = MaterialTheme.typography.titleLarge)
-                LazyColumn(modifier = Modifier.fillMaxWidth().padding(top = 8.dp).heightIn(max = 320.dp)) {
-                    items(lines) { Text(it, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(vertical = 2.dp)) }
+                Row(modifier = Modifier.padding(top = 8.dp).horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    RECORD_TABS.forEach { (id, label) ->
+                        if (id == records.tab) Button(onClick = { onTab(id) }) { Text(label) }
+                        else OutlinedButton(onClick = { onTab(id) }) { Text(label) }
+                    }
+                }
+                LazyColumn(modifier = Modifier.fillMaxWidth().padding(top = 8.dp).heightIn(max = 360.dp)) {
+                    items(records.rows) { row ->
+                        Column(modifier = Modifier.padding(vertical = 3.dp)) {
+                            Text(row.text, style = MaterialTheme.typography.bodySmall)
+                            if (row.buttons.isNotEmpty()) {
+                                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                    row.buttons.forEach { (label, onClick) -> TextButton(onClick = onClick) { Text(label) } }
+                                }
+                            }
+                        }
+                    }
                 }
                 TextButton(onClick = onClose, modifier = Modifier.align(Alignment.End)) { Text("닫기") }
             }

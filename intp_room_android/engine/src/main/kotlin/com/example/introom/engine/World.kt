@@ -90,3 +90,20 @@ fun daytimeMoonVisible(day: Int, period: String, seed: Long): Boolean {
     val r = rngFor(day, seed, "moon")
     return r.nextDouble() < 0.3
 }
+
+/**
+ * 그날 바다에 들어오는 파도의 실제 주기(초, 0.5 단위). 측정 행동만 이 값을 근사해서 읽을 수 있다.
+ * 날마다 달라지는 폭이 있어서, 여러 날 재 보면 차이가 보일 수 있다 (원인은 이 빌드에서 확정하지 않는다).
+ */
+fun wavePeriod(day: Int, seed: Long): Double {
+    val base = 6.5 + Random("$seed:wave_base".hashCode().toLong()).nextDouble() * 2.5
+    val r = rngFor(day, seed, "wave_period")
+    val v = base + (r.nextDouble() * 4.0 - 2.0)
+    return maxOf(4.0, Math.round(v * 2) / 2.0)
+}
+
+/** 같은 날이라도 잴 때마다 조금씩 다르게 나오는 측정값 (실제 주기 ±0.5초). */
+fun waveReading(day: Int, period: String, seed: Long, salt: String): Double {
+    val r = rngFor(day, seed, "$salt:$period")
+    return maxOf(4.0, wavePeriod(day, seed) + listOf(-0.5, 0.0, 0.0, 0.5)[r.nextInt(4)])
+}

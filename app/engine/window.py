@@ -87,7 +87,14 @@ def requirements_met(state: GameState, obs: dict) -> bool:
         elif t == "지식":
             if not _knowledge_ok(state, key):
                 return False
-        else:  # 경험/질문: 1차 범위에 해당 행동·기록이 없다
+        elif t == "경험":  # 실제로 한 탐구 행동만 (문장 출력 횟수로는 생기지 않는다)
+            if not state.actions_done.get(wc.EXPERIENCE_RULES[key], {}).get("count"):
+                return False
+        elif t == "질문":  # 플레이어가 붙잡은(held/revisited) 준비된 질문만
+            qid = wc.QUESTION_RULES[key]
+            if qid is None or state.questions.get(qid, {}).get("state") not in ("held", "revisited"):
+                return False
+        else:
             return False
     return True
 

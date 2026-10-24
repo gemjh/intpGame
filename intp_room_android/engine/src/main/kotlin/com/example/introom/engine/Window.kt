@@ -62,7 +62,11 @@ fun requirementsMet(state: GameState, obs: WindowObservation): Boolean {
             "시간" -> state.period in TIME_RULES.getValue(r.key)
             "기록" -> recordOk(state, r.key)
             "지식" -> knowledgeOk(state, r.key)
-            else -> false // 경험/질문: 1차 범위에 해당 행동·기록이 없다
+            // 경험: 실제로 한 탐구 행동만 (문장 출력 횟수로는 생기지 않는다)
+            "경험" -> (state.actionsDone[EXPERIENCE_RULES.getValue(r.key)]?.count ?: 0) > 0
+            // 질문: 플레이어가 붙잡은(held/revisited) 준비된 질문만
+            "질문" -> QUESTION_RULES.getValue(r.key)?.let { state.questions[it]?.state in setOf("held", "revisited") } ?: false
+            else -> false
         }
         if (!ok) return false
     }

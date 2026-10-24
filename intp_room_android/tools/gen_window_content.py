@@ -108,7 +108,17 @@ def main():
         w(f"    {s(k)} to KnowledgeRule({', '.join(args)}),")
     w(")")
     w("")
-    w(f"val BLOCKED_PREFIXES = {sset(wc.BLOCKED_PREFIXES)}")
+    w("// 경험 조건 -> 실제로 한 탐구 행동(actionsDone). 질문 조건 -> 붙잡은 준비된 질문 ID (null = 콘텐츠 없음, 충족 불가).")
+    w("val EXPERIENCE_RULES: Map<String, String> = mapOf(" +
+      ", ".join(f"{s(k)} to {s(v)}" for k, v in wc.EXPERIENCE_RULES.items()) + ")")
+    w("val QUESTION_RULES: Map<String, String?> = mapOf(" +
+      ", ".join(f"{s(k)} to {s(v)}" for k, v in wc.QUESTION_RULES.items()) + ")")
+    w("")
+    w("// 기록 화면용 지식 이름 (148문장의 '관련 지식' 열).")
+    w("val KNOWLEDGE_LABELS: Map<String, String> = mapOf(")
+    for k, v in wc.KNOWLEDGE_LABELS.items():
+        w(f"    {s(k)} to {s(v)},")
+    w(")")
     w("")
     w("val RECORD_RULES: Map<String, RecordRule> = mapOf(")
     for k, v in wc.RECORD_RULES.items():

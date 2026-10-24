@@ -108,9 +108,7 @@
   if (logBtn) {
     const fresh = logBtn.cloneNode(true);   // 원본 핸들러 제거
     logBtn.parentNode.replaceChild(fresh, logBtn);
-    fresh.addEventListener('click', () => {
-      openSimple('기록', snap && snap.log.length ? snap.log.slice().reverse().join('\n') : '아직 기록이 없다.');
-    });
+    fresh.addEventListener('click', () => openRecords('log'));
   }
 
   /* ---------- 모달 확장 (기존 #title/#desc/#observe/#close DOM을 그대로 쓰고, 둘만 추가) ---------- */
@@ -153,6 +151,11 @@
         }));
         acts.push({ action: 'observe', label: '그냥 바라본다 (1턴)', payload: { subject: 'any' } });
         if (hasBinoculars) acts.push({ action: 'zoom', label: '쌍안경으로 확대해서 보기 (1턴)' });
+        // 2차: 파도 주기 탐구. 파도를 한 번 눈여겨본 뒤부터 보인다 (질문 등록 없이도 가능).
+        if (snap.wave && snap.wave.available) {
+          acts.push({ action: 'wave_count', label: '파도를 세어 본다 (1턴)' });
+          acts.push({ action: 'wave_measure', label: '기준점을 정해 파도 간격을 잰다 (1턴)' });
+        }
         return acts;
       }
       case 'boxes': return [{ action: 'organize', label: '정리하기 (1턴)' }];
@@ -172,6 +175,33 @@
   async function runSimpleAction(objectId, act) {
     const result = await apiInteract(objectId, act.action, act.payload);
     descEl.textContent = (result && result.error) ? '(' + result.error + ')' : ((result && result.text) || '');
+    showRaisedQuestions(result);
+  }
+
+  // QST-01: 관찰·행동으로 처음 떠오른 준비된 질문. 붙잡을지(0턴) 그냥 둘지 플레이어가 고른다.
+  // 그냥 둬도 기록 화면의 '질문' 탭에서 나중에 붙잡을 수 있다.
+  function showRaisedQuestions(result) {
+    extra.querySelectorAll('.ix-question').forEach(el => el.remove());
+    const qs = (result && result.questions) || [];
+    qs.forEach(q => {
+      const box = document.createElement('div');
+      box.className = 'ix-question';
+      box.innerHTML = '<div class="ix-q-text"></div><div class="ix-q-buttons"></div>';
+      box.querySelector('.ix-q-text').textContent = '떠오른 질문 — ' + q.text;
+      const row = box.querySelector('.ix-q-buttons');
+      const hold = document.createElement('button');
+      hold.textContent = '질문으로 붙잡기 (0턴)';
+      hold.addEventListener('click', async () => {
+        const r = await apiInteract('records', 'question', { question: q.id, question_state: 'held' });
+        box.querySelector('.ix-q-text').textContent = (r && r.error) ? '(' + r.error + ')' : '붙잡았다 — ' + q.text;
+        row.remove();
+      });
+      const skip = document.createElement('button');
+      skip.textContent = '그냥 둔다';
+      skip.addEventListener('click', () => box.remove());
+      row.append(hold, skip);
+      extra.appendChild(box);
+    });
   }
 
   function openObject(objectId, label) {
@@ -202,8 +232,10 @@
       renderDesk();
     });
 
-    const threadIds = Object.keys(snap.desk);
-    if (threadIds.length === 0) {
+    renderWaveDesk();
+
+    const threadIds = Object.keys(snap.desk).filter(tid => tid !== 'wave_period');
+    if (threadIds.length === 0 && !(snap.wave && snap.wave.can_interpret)) {
       const p = document.createElement('p');
       p.textContent = '아직 책상 위에 정리할 게 없다. 뭔가 관찰부터 해야 할 것 같다.';
       extra.appendChild(p);
@@ -243,6 +275,99 @@
         });
       }
     });
+  }
+
+  // 2차: 파도 주기 탐구의 해석/검증. 잰 기록을 보여주고 해석을 고르게 한다 (1턴, 정답을 확정하지 않음).
+  function renderWaveDesk() {
+    const w = snap.wave;
+    if (!w || !w.can_interpret) return;
+    const block = document.createElement('div');
+    block.className = 'ix-thread';
+    const fmt = x => x.day + '일차 ' + x.period_label;
+    let html = '<h5>파도 기록</h5>';
+    html += w.measurements.map(m => `<div class="ix-entry">· 잰 값: ${fmt(m)} 약 ${m.seconds}초</div>`).join('');
+    html += w.counts.map(c => `<div class="ix-entry">· 어림: ${fmt(c)} ${c.low}~${c.high}초쯤</div>`).join('');
+    const d = snap.desk.wave_period;
+    if (d && d.infos.length) {
+      html += '<h5>정보</h5>' + d.infos.map(i => `<div class="ix-entry">[책] ${i.text}</div>`).join('');
+    }
+    html += '<h5>해석</h5>';
+    html += (d && d.hypothesis)
+      ? `<div class="ix-hyp">${d.hypothesis.text} <span class="ix-hyp-status">[${d.hypothesis.status_label}]</span></div>`
+      : '<div class="ix-entry">아직 해석해 보지 않았다.</div>';
+    block.innerHTML = html;
+    extra.appendChild(block);
+    w.interpretations.forEach((label, idx) => {
+      addActionButton(`파도 기록 해석: "${label}" (1턴)`, async () => {
+        const r = await apiInteract('desk', 'wave_interpret', { choice: idx });
+        renderDesk();
+        descEl.textContent = (r && r.error) ? '(' + r.error + ')' : r.text;
+      });
+    });
+  }
+
+  // REC-03: 기록 화면 — 일지·관찰·질문·지식·연결. 열람과 질문 상태 바꾸기는 모두 0턴.
+  const RECORD_TABS = [['log', '일지'], ['observations', '관찰'], ['questions', '질문'], ['knowledge', '지식'], ['connections', '연결']];
+  function openRecords(tab) {
+    titleEl.textContent = '기록';
+    descEl.textContent = '';
+    actionsRow.innerHTML = '';
+    extra.innerHTML = '';
+    modal.classList.remove('hidden');
+    const tabs = document.createElement('div');
+    tabs.className = 'ix-tabs';
+    RECORD_TABS.forEach(([id, label]) => {
+      const b = document.createElement('button');
+      b.textContent = label;
+      if (id === tab) b.classList.add('on');
+      b.addEventListener('click', () => openRecords(id));
+      tabs.appendChild(b);
+    });
+    extra.appendChild(tabs);
+    const body = document.createElement('div');
+    extra.appendChild(body);
+    const rec = (snap && snap.records) || {};
+    const entry = text => { const d = document.createElement('div'); d.className = 'ix-entry'; d.textContent = text; body.appendChild(d); return d; };
+    const empty = text => entry(text);
+
+    if (tab === 'log') {
+      const lines = snap && snap.log.length ? snap.log.slice().reverse() : [];
+      lines.length ? lines.forEach(l => entry(l)) : empty('아직 기록이 없다.');
+    } else if (tab === 'observations') {
+      const obs = rec.observations || [];
+      obs.length ? obs.forEach(o => entry(`· ${o.first}${o.count > 1 ? ` (${o.count}번 봄)` : ''} — ${o.text}`))
+                 : empty('아직 관찰한 게 없다.');
+    } else if (tab === 'questions') {
+      const qs = rec.questions || [];
+      if (!qs.length) empty('아직 떠오른 질문이 없다.');
+      qs.forEach(q => {
+        const box = document.createElement('div');
+        box.className = 'ix-question';
+        box.innerHTML = '<div class="ix-q-text"></div><div class="ix-q-buttons"></div>';
+        box.querySelector('.ix-q-text').textContent = `${q.text}  [${q.state_label}]`;
+        const row = box.querySelector('.ix-q-buttons');
+        Object.entries(rec.question_state_labels || {}).forEach(([st, label]) => {
+          if (st === q.state) return;
+          const b = document.createElement('button');
+          b.textContent = st === 'arisen' ? '내려놓기' : (st === 'held' ? '붙잡기' : '다시 생각하기');
+          b.title = label;
+          b.addEventListener('click', async () => {
+            await apiInteract('records', 'question', { question: q.id, question_state: st });
+            openRecords('questions');
+          });
+          row.appendChild(b);
+        });
+        body.appendChild(box);
+      });
+    } else if (tab === 'knowledge') {
+      const ks = rec.knowledge || [];
+      ks.length ? ks.forEach(k => entry(`· ${k.label} [${k.status_label}] — ${k.sources.join(', ')}`))
+                : empty('아직 알게 된 게 없다.');
+    } else if (tab === 'connections') {
+      const cs = rec.connections || [];
+      cs.length ? cs.forEach(c => entry(`· ${c.day}일차 — ${c.text}`))
+                : empty('아직 떠오른 연결이 없다.');
+    }
   }
 
   function renderMemowall() {

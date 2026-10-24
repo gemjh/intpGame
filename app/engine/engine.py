@@ -14,10 +14,10 @@ import random
 import uuid
 from dataclasses import asdict
 
-from . import connection, content, window, window_content, world
+from . import connection, content, inquiry, window, window_content, world
 from .models import (
     GameState, Observation, InfoEntry, Hypothesis, HypothesisRevision,
-    Discovery, ThreadState, PERIODS, PERIOD_LABELS, ZERO_TURN_REPEAT_LIMIT,
+    Discovery, ThreadState, HYPOTHESIS_STATUS_LABELS, PERIODS, PERIOD_LABELS, ZERO_TURN_REPEAT_LIMIT,
 )
 
 
@@ -120,7 +120,7 @@ def interact(state: GameState, object_id: str, action_id: str,
              player_pos: tuple[int, int] | None = None, **payload) -> dict:
     if state.ended:
         raise GameError("이미 끝난 세션이야.", 409)
-    if player_pos is not None:
+    if player_pos is not None and object_id != "records":  # 기록 화면은 방 안 물건이 아니다
         px, py = player_pos
         if not content.is_adjacent_to_object(px, py, object_id):
             raise GameError("그 오브젝트 근처로 가야 상호작용할 수 있어.", 400)
@@ -216,6 +216,8 @@ def _window_observe_world(state: GameState, subject: str | None) -> dict:
         "first_seen": rec["first_seen"],
         "new_knowledge": rec["new_knowledge"],
         "connection": None if conn is None else {"id": conn["id"], "stage": conn["stage"]},
+        # QST-01: 이 관찰로 처음 떠오른 준비된 질문 (등록 여부는 플레이어가 고른다)
+        "questions": inquiry.raise_questions(state, obs["id"]),
     }
 
 
@@ -266,6 +268,37 @@ def _h_window_zoom(state: GameState, payload: dict) -> dict:
     _log(state, text)
     _advance_time(state, 1)
     return {"text": text, "turn_cost": 1, "thread": "night_light", "observation_id": obs.id}
+
+
+# ------------------------------------------------------------------ 파도 주기 탐구 (2차, 5장)
+def _h_window_wave(action):
+    def handler(state: GameState, payload: dict) -> dict:
+        if not inquiry.wave_available(state):
+            raise GameError("아직 파도를 눈여겨본 적이 없다.", 400)
+        result = action(state)
+        _log(state, result["text"])
+        _advance_time(state, result["turn_cost"])
+        return result
+    return handler
+
+
+def _h_desk_wave_interpret(state: GameState, payload: dict) -> dict:
+    try:
+        result = inquiry.wave_interpret(state, payload.get("choice"))
+    except ValueError as e:
+        raise GameError(str(e), 400)
+    _log(state, result["text"])
+    _advance_time(state, result["turn_cost"])
+    return result
+
+
+# ------------------------------------------------------------------ 기록 화면 (REC-03: 0턴)
+def _h_records_question(state: GameState, payload: dict) -> dict:
+    try:
+        r = inquiry.set_question_state(state, payload.get("question"), payload.get("question_state"))
+    except ValueError as e:
+        raise GameError(str(e), 400)
+    return {**r, "turn_cost": 0}
 
 
 # ------------------------------------------------------------------ 이삿짐 상자
@@ -381,6 +414,13 @@ def _h_bookshelf_read(state: GameState, payload: dict) -> dict:
             _advance_time(state, 1)
             return {"text": text, "turn_cost": 1, "info_gained": book["info_text"]}
 
+    book = inquiry.read_wave_book(state)  # 2차: 파도를 눈여겨본 뒤에 눈에 들어오는 책 (지식 '접함')
+    if book is not None:
+        _log(state, book["text"])
+        _advance_time(state, 1)
+        return {"text": book["text"], "turn_cost": 1, "info_gained": book["info_gained"],
+                "new_knowledge": [book["knowledge"]]}
+
     text = random.choice(content.BOOKSHELF_GENERIC_BOOKS)
     _log(state, text)
     _advance_time(state, 1)
@@ -447,6 +487,10 @@ _HANDLERS = {
     ("window", "glance"): _h_window_glance,
     ("window", "observe"): _h_window_observe,
     ("window", "zoom"): _h_window_zoom,
+    ("window", "wave_count"): _h_window_wave(inquiry.wave_count),
+    ("window", "wave_measure"): _h_window_wave(inquiry.wave_measure),
+    ("desk", "wave_interpret"): _h_desk_wave_interpret,
+    ("records", "question"): _h_records_question,
     ("boxes", "organize"): _h_boxes_organize,
     ("desk", "hypothesis"): _h_desk_hypothesis,
     ("computer", "search"): _h_computer_search,
@@ -481,6 +525,8 @@ def snapshot(state: GameState) -> dict:
             "total": len(window_content.OBSERVATIONS),
             "knowledge_count": len(state.knowledge),
         },
+        "wave": inquiry.wave_view(state),
+        "records": inquiry.records_view(state),
         "exit_unlocked": state.exit_unlocked,
         "ended": state.ended,
         "log": state.log[-30:],
@@ -502,6 +548,7 @@ def _desk_view(state: GameState) -> dict:
         threads.setdefault(hyp.thread, {"observations": [], "infos": [], "hypothesis": None})
         threads[hyp.thread]["hypothesis"] = {
             "text": hyp.latest_text(), "status": hyp.status,
+            "status_label": HYPOTHESIS_STATUS_LABELS.get(hyp.status, hyp.status),
             "history": [asdict(r) for r in hyp.revisions],
         }
     return threads

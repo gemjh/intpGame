@@ -57,7 +57,9 @@ class WindowTest {
                     "기록" -> assertTrue(r.key, r.key in RECORD_RULES)
                     "지식" -> assertTrue(r.key, r.key in KNOWLEDGE_RULES)
                     "시간" -> assertTrue(r.key, r.key in TIME_RULES)
-                    else -> assertTrue(r.type, r.type in BLOCKED_PREFIXES)
+                    "경험" -> assertTrue(r.key, r.key in EXPERIENCE_RULES)
+                    "질문" -> assertTrue(r.key, r.key in QUESTION_RULES)
+                    else -> fail("알 수 없는 조건 ${r.type}")
                 }
             }
         }

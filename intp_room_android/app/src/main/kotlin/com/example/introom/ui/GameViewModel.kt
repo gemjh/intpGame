@@ -11,8 +11,14 @@ import com.example.introom.engine.HYPOTHESIS_TEMPLATES
 import com.example.introom.engine.PERIOD_LABELS
 import com.example.introom.engine.WINDOW_ANY
 import com.example.introom.engine.WINDOW_SUBJECTS
+import com.example.introom.engine.QUESTION_STATE_LABELS
+import com.example.introom.engine.WAVE_INTERPRETATIONS
+import com.example.introom.engine.WAVE_THREAD
+import com.example.introom.engine.canInterpret
 import com.example.introom.engine.interact
 import com.example.introom.engine.newGame
+import com.example.introom.engine.recordsView
+import com.example.introom.engine.waveAvailable
 import com.example.introom.engine.windowSubjectLabel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -51,7 +57,15 @@ data class DialogUi(
 
 data class EndUi(val visible: Boolean = false, val label: String = "")
 
-private val THREAD_TITLES = mapOf("night_light" to "밤바다 불빛", "moon" to "낮의 달", "restaurant" to "횟집")
+/** REC-03 기록 화면 한 줄. 질문 줄에는 바꿀 수 있는 상태 버튼(라벨, 상태ID)이 붙는다. */
+data class RecordRowUi(val text: String, val buttons: List<Pair<String, () -> Unit>> = emptyList())
+
+/** REC-03 기록 화면: 일지·관찰·질문·지식·연결 탭. 열람·질문 상태 변경 모두 0턴. */
+data class RecordsUi(val tab: String = "log", val rows: List<RecordRowUi> = emptyList())
+
+val RECORD_TABS = listOf("log" to "일지", "observations" to "관찰", "questions" to "질문", "knowledge" to "지식", "connections" to "연결")
+
+private val THREAD_TITLES = mapOf("night_light" to "밤바다 불빛", "moon" to "낮의 달", "restaurant" to "횟집", WAVE_THREAD to "파도 주기")
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val repo = GameRepository(application)
@@ -65,6 +79,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _end = MutableStateFlow(EndUi())
     val end: StateFlow<EndUi> = _end.asStateFlow()
+
+    private val _records = MutableStateFlow<RecordsUi?>(null)
+    val records: StateFlow<RecordsUi?> = _records.asStateFlow()
 
     init {
         refreshChrome()
@@ -115,8 +132,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 val subjects = WINDOW_SUBJECTS.map { sid ->
                     Triple("observe", "${windowSubjectLabel(state, sid)} 보기 (1턴)", mapOf<String, Any?>("subject" to sid))
                 }
-                val base = subjects + Triple("observe", "그냥 바라본다 (1턴)", mapOf<String, Any?>("subject" to WINDOW_ANY))
-                if (hasBinoculars) base + Triple("zoom", "쌍안경으로 확대해서 보기 (1턴)", emptyMap()) else base
+                var acts = subjects + Triple("observe", "그냥 바라본다 (1턴)", mapOf<String, Any?>("subject" to WINDOW_ANY))
+                if (hasBinoculars) acts = acts + Triple("zoom", "쌍안경으로 확대해서 보기 (1턴)", emptyMap())
+                // 2차: 파도 주기 탐구. 파도를 한 번 눈여겨본 뒤부터 보인다 (질문 등록 없이도 가능).
+                if (waveAvailable(state)) {
+                    acts = acts + Triple("wave_count", "파도를 세어 본다 (1턴)", emptyMap()) +
+                        Triple("wave_measure", "기준점을 정해 파도 간격을 잰다 (1턴)", emptyMap())
+                }
+                acts
             }
             "boxes" -> listOf(Triple("organize", "정리하기 (1턴)", emptyMap()))
             "bookshelf" -> listOf(
@@ -136,6 +159,25 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val result = doInteract(objectId, action, payload)
         val text = (result?.get("error") as? String)?.let { "($it)" } ?: (result?.get("text") as? String) ?: ""
         _dialog.update { it.copy(body = text) }
+        @Suppress("UNCHECKED_CAST")
+        (result?.get("questions") as? List<Map<String, String>>)?.forEach { offerQuestion(it.getValue("id"), it.getValue("text")) }
+    }
+
+    // QST-01: 관찰·행동으로 처음 떠오른 준비된 질문. 붙잡을지(0턴) 그냥 둘지 플레이어가 고른다.
+    // 그냥 둬도 기록 화면의 '질문' 탭에서 나중에 붙잡을 수 있다.
+    private fun offerQuestion(qid: String, text: String) {
+        val base = _dialog.value
+        lateinit var holdAction: DialogAction
+        lateinit var skipAction: DialogAction
+        fun dropOffer(extra: String) = _dialog.update {
+            it.copy(body = it.body + extra, actions = it.actions.filter { a -> a !== holdAction && a !== skipAction })
+        }
+        holdAction = DialogAction("질문으로 붙잡기 (0턴)") {
+            doInteract("records", "question", mapOf("question" to qid, "question_state" to "held"))
+            dropOffer("\n붙잡았다.")
+        }
+        skipAction = DialogAction("그냥 둔다") { dropOffer("") }
+        _dialog.value = base.copy(body = base.body + "\n\n떠오른 질문 — $text", actions = listOf(holdAction, skipAction) + base.actions)
     }
 
     fun openObject(objectId: String, label: String) {
@@ -174,14 +216,41 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
 
         val sections = mutableListOf<ThreadSectionUi>()
+        // 2차: 파도 주기 탐구의 해석/검증. 잰 기록을 보여주고 해석을 고르게 한다 (1턴, 정답을 확정하지 않음).
+        if (canInterpret(state)) {
+            val wave = desk[WAVE_THREAD]
+            val records = state.actionsDone["wave_measure"]?.history.orEmpty().map {
+                "잰 값: ${it.day}일차 ${PERIOD_LABELS[it.period]} 약 ${it.seconds}초"
+            } + state.actionsDone["wave_count"]?.history.orEmpty().map {
+                "어림: ${it.day}일차 ${PERIOD_LABELS[it.period]} ${it.low}~${it.high}초쯤"
+            }
+            sections.add(
+                ThreadSectionUi(
+                    title = "파도 주기", observations = records,
+                    infos = wave?.infos.orEmpty().map { "[책] ${it["text"]}" },
+                    hypothesisText = wave?.hypothesis?.get("text") as? String,
+                    hypothesisStatus = wave?.hypothesis?.get("status_label") as? String,
+                ),
+            )
+            WAVE_INTERPRETATIONS.forEachIndexed { idx, claim ->
+                actions.add(
+                    DialogAction("파도 기록 해석: \"$claim\" (1턴)") {
+                        val r = doInteract("desk", "wave_interpret", mapOf("choice" to idx))
+                        renderDesk(label)
+                        _dialog.update { it.copy(body = (r?.get("error") as? String)?.let { e -> "($e)" } ?: (r?.get("text") as? String ?: "")) }
+                    },
+                )
+            }
+        }
         for ((threadId, view) in desk) {
+            if (threadId == WAVE_THREAD) continue
             sections.add(
                 ThreadSectionUi(
                     title = THREAD_TITLES[threadId] ?: threadId,
                     observations = view.observations.map { it["text"] as String },
                     infos = view.infos.map { "[${if (it["source"] == "book") "책" else "컴퓨터"}] ${it["text"]}" },
                     hypothesisText = (view.hypothesis?.get("text") as? String),
-                    hypothesisStatus = (view.hypothesis?.get("status") as? String),
+                    hypothesisStatus = (view.hypothesis?.get("status_label") as? String),
                 ),
             )
             val hasHypothesis = view.hypothesis != null
@@ -227,6 +296,28 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    // ------------------------------------------------------------------ 로그("기록" 버튼)
-    fun recentLog(): List<String> = state.log.asReversed()
+    // ------------------------------------------------------------------ 기록 화면("기록" 버튼, REC-03)
+    fun openRecords(tab: String = "log") {
+        val view = recordsView(state)
+        val rows = when (tab) {
+            "observations" -> view.observations.map { RecordRowUi(it.text) }.ifEmpty { listOf(RecordRowUi("아직 관찰한 게 없다.")) }
+            "questions" -> view.questions.map { line ->
+                RecordRowUi(line.text, QUESTION_STATE_LABELS.keys.filter { it != line.questionState }.map { st ->
+                    val label = when (st) { "arisen" -> "내려놓기"; "held" -> "붙잡기"; else -> "다시 생각하기" }
+                    label to {
+                        doInteract("records", "question", mapOf("question" to line.questionId, "question_state" to st))
+                        openRecords("questions")
+                    }
+                })
+            }.ifEmpty { listOf(RecordRowUi("아직 떠오른 질문이 없다.")) }
+            "knowledge" -> view.knowledge.map { RecordRowUi(it.text) }.ifEmpty { listOf(RecordRowUi("아직 알게 된 게 없다.")) }
+            "connections" -> view.connections.map { RecordRowUi(it.text) }.ifEmpty { listOf(RecordRowUi("아직 떠오른 연결이 없다.")) }
+            else -> state.log.asReversed().map { RecordRowUi(it) }.ifEmpty { listOf(RecordRowUi("아직 기록이 없다.")) }
+        }
+        _records.value = RecordsUi(tab, rows)
+    }
+
+    fun closeRecords() {
+        _records.value = null
+    }
 }

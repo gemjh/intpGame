@@ -82,3 +82,17 @@ def daytime_moon_visible(day: int, period: str, seed: int) -> bool:
         return False
     r = _rng_for(day, seed, "moon")
     return r.random() < 0.3
+
+
+def wave_period(day: int, seed: int) -> float:
+    """그날 바다에 들어오는 파도의 실제 주기(초, 0.5 단위). 측정 행동만 이 값을 근사해서 읽을 수 있다.
+    날마다 달라지는 폭이 있어서, 여러 날 재 보면 차이가 보일 수 있다 (원인은 이 빌드에서 확정하지 않는다)."""
+    base = 6.5 + random.Random(f"{seed}:wave_base").random() * 2.5
+    r = _rng_for(day, seed, "wave_period")
+    return max(4.0, round((base + r.uniform(-2.0, 2.0)) * 2) / 2)
+
+
+def wave_reading(day: int, period: str, seed: int, salt: str) -> float:
+    """같은 날이라도 잴 때마다 조금씩 다르게 나오는 측정값 (실제 주기 ±0.5초)."""
+    r = _rng_for(day, seed, f"{salt}:{period}")
+    return max(4.0, wave_period(day, seed) + r.choice([-0.5, 0.0, 0.0, 0.5]))

@@ -49,7 +49,7 @@ val TIME_RULES: Map<String, Set<String>> = mapOf(
 
 val KNOWLEDGE_RULES: Map<String, KnowledgeRule> = mapOf(
     "너울" to KnowledgeRule(all = listOf(), blocked = "공급원 없음(2차: 도서관/탐구)"),
-    "파도_주기" to KnowledgeRule(all = listOf(), blocked = "공급원 없음(2차: 파도 주기 탐구)"),
+    "파도_주기" to KnowledgeRule(all = listOf("wave_period")),
     "조석_원리" to KnowledgeRule(all = listOf(), blocked = "공급원 없음(2차)"),
     "지역_조석" to KnowledgeRule(all = listOf(), blocked = "SEA-021 자신이 공급원인 순환 조건 — 콘텐츠 확인 필요"),
     "항로표지" to KnowledgeRule(all = listOf("navigation_marks")),
@@ -62,7 +62,52 @@ val KNOWLEDGE_RULES: Map<String, KnowledgeRule> = mapOf(
     "사회적_참조" to KnowledgeRule(all = listOf(), blocked = "공급원 없음(3차: 두식이 감각 탐구)"),
 )
 
-val BLOCKED_PREFIXES = setOf("경험", "질문")
+// 경험 조건 -> 실제로 한 탐구 행동(actionsDone). 질문 조건 -> 붙잡은 준비된 질문 ID (null = 콘텐츠 없음, 충족 불가).
+val EXPERIENCE_RULES: Map<String, String> = mapOf("파도_주기_측정" to "wave_measure")
+val QUESTION_RULES: Map<String, String?> = mapOf("파도_방향" to null)
+
+// 기록 화면용 지식 이름 (148문장의 '관련 지식' 열).
+val KNOWLEDGE_LABELS: Map<String, String> = mapOf(
+    "swell" to "너울·풍파",
+    "wave_period" to "파동의 주기",
+    "tide_vs_wave" to "조석과 파도의 구분",
+    "tide_principle" to "달·태양과 조석",
+    "regional_tide" to "지역별 조석의 차이",
+    "ocean_optics" to "해양광학: 흡수·산란·반사",
+    "turbidity" to "탁도와 부유물",
+    "navigation_marks" to "부표·항로표지",
+    "navigation" to "항로와 항해",
+    "cumulus_convection" to "적운과 대류",
+    "cirrus_ice" to "권운과 얼음 결정",
+    "wind_by_altitude" to "고도별 바람",
+    "rayleigh_sunset" to "레이리 산란·일몰",
+    "sky_color_forecast_limits" to "대기광학과 날씨 예측 한계",
+    "moon_phase" to "달의 위상",
+    "star_brightness" to "겉보기 밝기·광도·거리",
+    "axial_tilt_orbit" to "지구 자전축 기울기·공전",
+    "cloud_classification" to "구름 분류·강수",
+    "fish_postmortem" to "생선 사후변화·냉장 관리",
+    "fish_aging" to "숙성·ATP 분해·식감",
+    "fish_handling_quality" to "어획 후 처리·품질",
+    "dog_smell" to "후각·냄새 분자 이동",
+    "dog_hearing" to "개의 가청 주파수",
+    "dog_scent_marking" to "개의 냄새 표지·후각 의사소통",
+    "dog_tail_signal" to "개의 꼬리 신호",
+    "associative_learning" to "연합학습·조건형성",
+    "dog_yawn" to "하품과 행동 해석",
+    "social_referencing" to "개의 사회적 참조",
+    "dog_scent_identification" to "체취에 의한 사람 구별",
+    "dog_scent_memory" to "후각 기억",
+    "cat_spatial_memory" to "고양이의 공간 기억",
+    "ant_pheromone" to "개미 페로몬 의사소통",
+    "sun_altitude_shadow" to "태양 고도·그림자",
+    "moss" to "이끼·헛뿌리·수분 흡수",
+    "bird_locomotion" to "조류의 이동 방식",
+    "phototropism" to "굴광성·차등 생장",
+    "geosmin" to "지오스민·토양 미생물",
+    "spider_silk" to "거미줄의 실 종류",
+    "decomposers" to "분해자·물질 순환",
+)
 
 val RECORD_RULES: Map<String, RecordRule> = mapOf(
     "파도_간격" to RecordRule.Flag("any", "wave_interval"),

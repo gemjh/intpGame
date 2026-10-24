@@ -106,9 +106,38 @@ data class KnowledgeSource(val id: String, val day: Int, val period: String)
 
 /** KNW-01/02: 지식. 1차 범위에서는 "접함(encountered)"만 기록하고, 같은 지식은 중복 생성하지 않는다. */
 data class KnowledgeEntry(
-    val status: String = "encountered", // encountered | understood | applied
+    var status: String = "encountered", // encountered | understood | applied (행동으로만 오른다)
     val sources: MutableList<KnowledgeSource> = mutableListOf(),
 )
+
+/** 준비된 질문의 상태 변경 이력 한 줄. */
+data class QuestionStateChange(val state: String = "", val day: Int = 0, val period: String = "")
+
+/** QST-01/REC-04: 떠오른 질문. 상태는 떠오름(arisen)·붙잡음(held)·다시 생각함(revisited) — 완료/미완료 없음. */
+data class QuestionRecord(
+    var state: String = "arisen",
+    val first: TimePoint = TimePoint(0, ""),
+    val source: String = "",
+    val history: MutableList<QuestionStateChange> = mutableListOf(),
+)
+
+/** 파도 기록 해석 당시의 근거 (어떤 기록을 보고 판단했는지). */
+data class WaveBasis(val measuredDays: List<Int> = emptyList(), val roughCounts: Int = 0, val spread: Double? = null)
+
+/** 탐구 행동 한 번의 기록. 행동마다 쓰는 필드만 채운다 (측정: seconds / 세기: low·high / 해석: choice·status·basis). */
+data class ActionEntry(
+    val day: Int = 0,
+    val period: String = "",
+    val seconds: Double? = null,
+    val low: Int? = null,
+    val high: Int? = null,
+    val choice: Int? = null,
+    val status: String? = null,
+    val basis: WaveBasis? = null,
+)
+
+/** 탐구 행동 하나(예: 파도 측정)의 수행 횟수와 이력. 관찰·질문·지식과 독립적으로 저장된다 (5장). */
+data class ActionRecord(var count: Int = 0, val history: MutableList<ActionEntry> = mutableListOf())
 
 /** 자동 연결 한 단계의 기록 (명세서 261012 4장). evidence 는 실제 플레이 기록 ID 만 담는다. */
 data class ConnectionStageRecord(
@@ -160,9 +189,10 @@ data class GameState(
     var windowRecent: MutableList<String> = mutableListOf(),                         // 최근 출력한 창문 문장 ID (반복 감소용)
     // ---- 자동 연결 (명세서 261012). 이 필드가 없는 기존 v2 세이브는 빈 이력으로 로드된다.
     val connections: MutableMap<String, ConnectionRecord> = mutableMapOf(),          // 연결ID -> 단계/근거/이력
-    // 2·3차 범위 — 데이터 설계만 선반영 (아직 이 필드를 채우는 기능 없음)
-    val questions: MutableMap<String, MutableMap<String, Any?>> = mutableMapOf(),    // 질문ID -> {state: arisen|held|revisited}
-    val actionsDone: MutableMap<String, MutableMap<String, Any?>> = mutableMapOf(),  // 탐구 행동ID -> 이력
+    // ---- 2차 범위 (Inquiry.kt): 준비된 질문, 탐구 행동 이력
+    val questions: MutableMap<String, QuestionRecord> = mutableMapOf(),              // 질문ID -> 상태/이력
+    val actionsDone: MutableMap<String, ActionRecord> = mutableMapOf(),              // 탐구 행동ID -> 횟수/이력
+    // 3차 범위 — 데이터 설계만 선반영 (아직 이 필드를 채우는 기능 없음)
     val npcRelations: MutableMap<String, MutableMap<String, Boolean>> = mutableMapOf(), // 예: {"dog": {"name_known": true}}
     val freeNotes: MutableList<String> = mutableListOf(),                            // 자유 메모
 
